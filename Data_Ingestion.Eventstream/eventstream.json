@@ -1,0 +1,706 @@
+{
+  "sources": [
+    {
+      "id": "3042c118-0fbc-4190-a4c3-47943f5403c3",
+      "name": "new-source",
+      "type": "AzureEventHub",
+      "properties": {
+        "dataConnectionId": "210bfee4-f9c2-4a2e-ac0a-363e96d5ff08",
+        "consumerGroupName": "$Default",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "id": "05023f81-421f-4a88-a312-88d3d5575bd5",
+      "name": "Lakehouse",
+      "type": "Lakehouse",
+      "properties": {
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "5b2b34b5-d090-9198-43e6-2622ac0bf30b",
+        "schema": "dbo",
+        "deltaTable": "Raw_data_lakehouse",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "ManageFields"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "ManageFields",
+          "schema": {
+            "columns": [
+              {
+                "name": "Carruagem",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Comboio",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Datahora_Evento",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "ID_Equipamento",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Latitude",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Longitude",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "TipoEquipamento",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Tipo_de_Evento",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Valor",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "178d7217-8426-4cd2-ab92-03d92f6ef607",
+      "name": "Eventhouse1",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "ProcessedIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "875b1d64-1a31-ae65-4893-fff353e0256f",
+        "databaseName": "Raw_Data_datalive",
+        "tableName": "Sliding_Window_5min",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "Sliding_Window"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "Sliding_Window",
+          "schema": {
+            "columns": [
+              {
+                "name": "AVG_Valor",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Carruagem",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Comboio",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Datahora_Evento",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "ID_Equipamento",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Latitude",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Longitude",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "TipoEquipamento",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Tipo_de_Evento",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Valor",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "632094d5-bc67-42c0-81a5-c5615abd7437",
+      "name": "Eventhouse",
+      "type": "Eventhouse",
+      "properties": {
+        "dataIngestionMode": "ProcessedIngestion",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "875b1d64-1a31-ae65-4893-fff353e0256f",
+        "databaseName": "Raw_Data_datalive",
+        "tableName": "V2",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "ManageFields"
+        }
+      ],
+      "inputSchemas": [
+        {
+          "name": "ManageFields",
+          "schema": {
+            "columns": [
+              {
+                "name": "Carruagem",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Comboio",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Datahora_Evento",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "ID_Equipamento",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Latitude",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Longitude",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "TipoEquipamento",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Tipo_de_Evento",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Valor",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "streams": [
+    {
+      "id": "bcfcd9f9-2ad0-4421-86ab-d8e16df3f343",
+      "name": "Data_Ingestion-stream",
+      "type": "DefaultStream",
+      "properties": {},
+      "inputNodes": [
+        {
+          "name": "new-source"
+        }
+      ]
+    }
+  ],
+  "operators": [
+    {
+      "name": "ManageFields",
+      "type": "ManageFields",
+      "inputNodes": [
+        {
+          "name": "Data_Ingestion-stream"
+        }
+      ],
+      "properties": {
+        "columns": [
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "telemetry",
+                "columnPathSegments": [
+                  {
+                    "field": "Carruagem"
+                  }
+                ]
+              }
+            },
+            "alias": "Carruagem"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "telemetry",
+                "columnPathSegments": [
+                  {
+                    "field": "Comboio"
+                  }
+                ]
+              }
+            },
+            "alias": "Comboio"
+          },
+          {
+            "type": "Cast",
+            "properties": {
+              "targetDataType": "DateTime",
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "telemetry",
+                "columnPathSegments": [
+                  {
+                    "field": "Datahora_Evento"
+                  }
+                ]
+              }
+            },
+            "alias": "Datahora_Evento"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "telemetry",
+                "columnPathSegments": [
+                  {
+                    "field": "ID_Equipamento"
+                  }
+                ]
+              }
+            },
+            "alias": "ID_Equipamento"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "telemetry",
+                "columnPathSegments": [
+                  {
+                    "field": "Latitude"
+                  }
+                ]
+              }
+            },
+            "alias": "Latitude"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "telemetry",
+                "columnPathSegments": [
+                  {
+                    "field": "Longitude"
+                  }
+                ]
+              }
+            },
+            "alias": "Longitude"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "telemetry",
+                "columnPathSegments": [
+                  {
+                    "field": "TipoEquipamento"
+                  }
+                ]
+              }
+            },
+            "alias": "TipoEquipamento"
+          },
+          {
+            "type": "Rename",
+            "properties": {
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "telemetry",
+                "columnPathSegments": [
+                  {
+                    "field": "Tipo_de_Evento"
+                  }
+                ]
+              }
+            },
+            "alias": "Tipo_de_Evento"
+          },
+          {
+            "type": "Cast",
+            "properties": {
+              "targetDataType": "Float",
+              "column": {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "telemetry",
+                "columnPathSegments": [
+                  {
+                    "field": "Valor"
+                  }
+                ]
+              }
+            },
+            "alias": "Valor"
+          }
+        ]
+      },
+      "inputSchemas": [
+        {
+          "name": "Data_Ingestion-stream",
+          "schema": {
+            "columns": [
+              {
+                "name": "applicationId",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "deviceId",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "enqueuedTime",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "enrichments",
+                "type": "Record",
+                "fields": [],
+                "items": null
+              },
+              {
+                "name": "messageProperties",
+                "type": "Record",
+                "fields": [],
+                "items": null
+              },
+              {
+                "name": "messageSource",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "schema",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "telemetry",
+                "type": "Record",
+                "fields": [
+                  {
+                    "name": "Carruagem",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "Comboio",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "Datahora_Evento",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "ID_Equipamento",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "Latitude",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "Longitude",
+                    "type": "Float",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "TipoEquipamento",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "Tipo_de_Evento",
+                    "type": "Nvarchar(max)",
+                    "fields": null,
+                    "items": null
+                  },
+                  {
+                    "name": "Valor",
+                    "type": "BigInt",
+                    "fields": null,
+                    "items": null
+                  }
+                ],
+                "items": null
+              },
+              {
+                "name": "EventProcessedUtcTime",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "PartitionId",
+                "type": "BigInt",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "EventEnqueuedUtcTime",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sliding_Window",
+      "type": "Aggregate",
+      "inputNodes": [
+        {
+          "name": "ManageFields"
+        }
+      ],
+      "properties": {
+        "aggregations": [
+          {
+            "aggregateFunction": "Average",
+            "arguments": null,
+            "column": {
+              "expressionType": "ColumnReference",
+              "node": null,
+              "columnName": "Valor",
+              "columnPathSegments": []
+            },
+            "alias": "AVG_Valor",
+            "partitionBy": [
+              {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "Carruagem",
+                "columnPathSegments": []
+              },
+              {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "Comboio",
+                "columnPathSegments": []
+              },
+              {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "ID_Equipamento",
+                "columnPathSegments": []
+              },
+              {
+                "expressionType": "ColumnReference",
+                "node": null,
+                "columnName": "Tipo_de_Evento",
+                "columnPathSegments": []
+              }
+            ],
+            "duration": {
+              "value": 5,
+              "unit": "Minute"
+            }
+          }
+        ]
+      },
+      "inputSchemas": [
+        {
+          "name": "ManageFields",
+          "schema": {
+            "columns": [
+              {
+                "name": "Carruagem",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Comboio",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Datahora_Evento",
+                "type": "DateTime",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "ID_Equipamento",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Latitude",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Longitude",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "TipoEquipamento",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Tipo_de_Evento",
+                "type": "Nvarchar(max)",
+                "fields": null,
+                "items": null
+              },
+              {
+                "name": "Valor",
+                "type": "Float",
+                "fields": null,
+                "items": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "compatibilityLevel": "1.1"
+}

@@ -1,0 +1,22 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "4e1f85f3-06b2-46c0-9312-54c20ac2f099",
+        "clusterUri": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
+        "type": "Fabric",
+        "databaseItemId": "75cc065b-0517-4855-8eca-1fa132957dbf",
+        "databaseItemName": "Raw_Data_datalive"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "4e464cab-8b90-4be0-bae1-f7a0dd7a84c6",
+        "content": ".alter-merge table train_data (Latitude: real, Longitude: real)",
+        "title": "Tab",
+        "dataSourceId": "4e1f85f3-06b2-46c0-9312-54c20ac2f099"
+      }
+    ]
+  }
+}

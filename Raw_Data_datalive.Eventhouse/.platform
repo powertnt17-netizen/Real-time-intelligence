@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Eventhouse",
+    "displayName": "Raw_Data_datalive",
+    "description": "Raw_Data_datalive"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "09855422-1cc5-8dd5-485d-13e23bd8a5b8"
+  }
+}

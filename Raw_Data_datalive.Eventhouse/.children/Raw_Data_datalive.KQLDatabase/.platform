@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "KQLDatabase",
+    "displayName": "Raw_Data_datalive",
+    "description": "Raw_Data_datalive"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "875b1d64-1a31-ae65-4893-fff353e0256f"
+  }
+}

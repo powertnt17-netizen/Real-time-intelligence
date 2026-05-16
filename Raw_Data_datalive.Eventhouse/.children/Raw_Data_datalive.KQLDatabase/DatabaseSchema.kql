@@ -1,0 +1,6 @@
+// KQL script
+// Use management commands in this script to configure your database items, such as tables, functions, materialized views, and more.
+
+
+.create-merge table V2 (Carruagem:string, Comboio:string, Datahora_Evento:datetime, ID_Equipamento:string, Latitude:real, Longitude:real, TipoEquipamento:string, Tipo_de_Evento:string, Valor:real) 
+.create-merge table Sliding_Window_5min (AVG_Valor:real, Carruagem:string, Comboio:string, Datahora_Evento:datetime, ID_Equipamento:string, Latitude:real, Longitude:real, TipoEquipamento:string, Tipo_de_Evento:string, Valor:real) 
