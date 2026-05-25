@@ -1,0 +1,22 @@
+{
+  "queryset": {
+    "version": "1.0.0",
+    "dataSources": [
+      {
+        "id": "e3495398-879f-425a-8911-5ae67431a700",
+        "clusterUri": "",
+        "type": "Fabric",
+        "databaseItemId": "875b1d64-1a31-ae65-4893-fff353e0256f",
+        "databaseItemName": "Raw_Data_datalive"
+      }
+    ],
+    "tabs": [
+      {
+        "id": "03dbb1b0-ff61-40c3-bcbc-56abe26d9e29",
+        "content": "V2\n| where Tipo_de_Evento == \"Temperature\"\n| extend ValorNumerico = toreal(Valor)\n| where ValorNumerico < 20 or ValorNumerico > 25\n| where Datahora_Evento >= ago(10m)\n\n",
+        "title": "Tab",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      }
+    ]
+  }
+}

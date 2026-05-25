@@ -195,6 +195,26 @@
       ]
     },
     {
+      "id": "1c0f290a-a74d-4f36-8ffa-eb38fc225a94",
+      "name": "h-wbeaLvqj9NW7EJRR0AJN-e69b712f-df29-4631-80b7-6effab899a45",
+      "type": "Activator",
+      "properties": {
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemId": "ab899a45-6eff-80b7-4631-df29e69b712f",
+        "inputSerialization": {
+          "type": "Json",
+          "properties": {
+            "encoding": "UTF8"
+          }
+        }
+      },
+      "inputNodes": [
+        {
+          "name": "Data_Ingestion-stream"
+        }
+      ]
+    },
+    {
       "id": "632094d5-bc67-42c0-81a5-c5615abd7437",
       "name": "Eventhouse",
       "type": "Eventhouse",
@@ -435,9 +455,8 @@
             "alias": "Tipo_de_Evento"
           },
           {
-            "type": "Cast",
+            "type": "Rename",
             "properties": {
-              "targetDataType": "Float",
               "column": {
                 "expressionType": "ColumnReference",
                 "node": null,
@@ -554,7 +573,7 @@
                   },
                   {
                     "name": "Valor",
-                    "type": "BigInt",
+                    "type": "Float",
                     "fields": null,
                     "items": null
                   }
