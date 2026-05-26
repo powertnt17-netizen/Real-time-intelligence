@@ -4,17 +4,28 @@
     "dataSources": [
       {
         "id": "e3495398-879f-425a-8911-5ae67431a700",
-        "clusterUri": "",
+        "clusterUri": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
         "type": "Fabric",
-        "databaseItemId": "875b1d64-1a31-ae65-4893-fff353e0256f",
-        "databaseItemName": "Raw_Data_datalive"
+        "databaseItemId": "Raw_Data_datalive"
       }
     ],
     "tabs": [
       {
         "id": "03dbb1b0-ff61-40c3-bcbc-56abe26d9e29",
-        "content": "V2\n| where Tipo_de_Evento == \"Temperature\"\n| extend ValorNumerico = toreal(Valor)\n| where ValorNumerico < 20 or ValorNumerico > 25\n| where Datahora_Evento >= ago(10m)\n\n",
-        "title": "Tab",
+        "content": "V2\n| where Tipo_de_Evento == \"Temperature\"\n| extend ValorNumerico = toreal(Valor)\n| where ValorNumerico < 20 or ValorNumerico > 25\n| where Datahora_Evento >= ago(1m)\n\n",
+        "title": "Activator Temperature",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "c25eef88-3463-4912-a9d1-a9202492e732",
+        "content": "V2\n| where Tipo_de_Evento == \"Humidity\"\n| extend ValorNumerico = toreal(Valor)\n| where ValorNumerico < 20 or ValorNumerico > 70\n| where Datahora_Evento >= ago(1m)",
+        "title": "Activator_Humidity",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "7150c0c8-5b58-4a88-ae42-30c324c4252b",
+        "content": "V2\n| where Datahora_Evento >= ago(1m)\n| where Tipo_de_Evento == \"Door Open\" and toint(Valor) == 1\n| join kind=leftsemi (\n    V2\n    | where Datahora_Evento >= ago(1m)\n    | where Tipo_de_Evento == \"Speed\" and todouble(Valor) > 10\n) on Comboio, Carruagem, Datahora_Evento",
+        "title": "Door In Movement",
         "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
       }
     ]

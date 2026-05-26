@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Reflex",
-    "displayName": "Anomalies_Lakehouse_slow",
+    "displayName": "Notifications",
     "description": "Reflex Project created from Trigger Pane"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "8cb68dd2-a2a5-82b9-4305-1bee12069304"
+    "logicalId": "ce6e68bc-6d4b-8955-4708-a4e874e8e3f2"
   }
 }

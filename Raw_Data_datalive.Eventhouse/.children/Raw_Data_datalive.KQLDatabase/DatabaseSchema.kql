@@ -4,3 +4,15 @@
 
 .create-merge table V2 (Carruagem:string, Comboio:string, Datahora_Evento:datetime, ID_Equipamento:string, Latitude:real, Longitude:real, TipoEquipamento:string, Tipo_de_Evento:string, Valor:real) 
 .create-merge table Sliding_Window_5min (AVG_Valor:real, Carruagem:string, Comboio:string, Datahora_Evento:datetime, ID_Equipamento:string, Latitude:real, Longitude:real, TipoEquipamento:string, Tipo_de_Evento:string, Valor:real) 
+.create-merge table Tabela_Alertas (Carruagem:string, Comboio:string, Datahora_Evento:datetime, ID_Equipamento:string, Latitude:real, Longitude:real, TipoEquipamento:string, Tipo_de_Evento:string, Valor:real, Tipo_Alerta:string) 
+.create-or-alter function with (skipvalidation = "true") Temperature_Irregular_Function() {
+    V2
+    | where Tipo_de_Evento == "Temperature" and (todouble(Valor) < 20 or todouble(Valor) > 25)
+    | extend Tipo_Alerta = "Alerta: Temperatura fora do intervalo (20-25°C)"
+}
+.create-or-alter function with (skipvalidation = "true") Humidity_Irregular_Function() {
+    V2
+    | where Tipo_de_Evento == "Humidity" and (todouble(Valor) < 20 or todouble(Valor) > 70)
+    | extend Tipo_Alerta = "Alerta: Humidade fora do intervalo (20-70%)"
+}
+.alter table Tabela_Alertas policy update "[{\"IsEnabled\":true,\"Source\":\"V2\",\"Query\":\"Temperature_Irregular_Function()\",\"IsTransactional\":false,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null,\"OwnerPrincipalDetails\":\"fa724e0f-9bfa-4eba-868c-30969f3fafb0;41bcb72d-c1e9-42e2-b451-eaded8635d70\"},{\"IsEnabled\":true,\"Source\":\"V2\",\"Query\":\"Open_Door_Movement()\",\"IsTransactional\":false,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null,\"OwnerPrincipalDetails\":\"fa724e0f-9bfa-4eba-868c-30969f3fafb0;41bcb72d-c1e9-42e2-b451-eaded8635d70\"},{\"IsEnabled\":true,\"Source\":\"V2\",\"Query\":\"Humidity_Irregular_Function()\",\"IsTransactional\":false,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null,\"OwnerPrincipalDetails\":\"fa724e0f-9bfa-4eba-868c-30969f3fafb0;41bcb72d-c1e9-42e2-b451-eaded8635d70\"},{\"IsEnabled\":false,\"Source\":\"V2\",\"Query\":\"Open_Door_Movement()\",\"IsTransactional\":false,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null}]"
