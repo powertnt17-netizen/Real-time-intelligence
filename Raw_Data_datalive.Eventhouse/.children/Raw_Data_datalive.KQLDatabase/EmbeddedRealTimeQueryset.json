@@ -3,13 +3,13 @@
     "version": "1.0.0",
     "dataSources": [
       {
-        "id": "dd1438e1-3383-4d43-a7df-ff4f5fc6fd4e",
+        "id": "4ab84dc8-41ff-408a-9fe0-d74d9ae0edf8",
         "clusterUri": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
         "type": "Fabric",
         "databaseItemId": "Raw_Data_datalive"
       },
       {
-        "id": "4ab84dc8-41ff-408a-9fe0-d74d9ae0edf8",
+        "id": "87431699-ad5c-4ef1-a9fc-88a86596a0ca",
         "clusterUri": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
         "type": "Fabric",
         "databaseItemId": "Raw_Data_datalive"
@@ -18,15 +18,15 @@
     "tabs": [
       {
         "id": "4e464cab-8b90-4be0-bae1-f7a0dd7a84c6",
-        "content": ".alter-merge table Tabela_Alertas policy update\n@'[{\"IsEnabled\": true, \"Source\": \"V2\", \"Query\": \"Humidity_Irregular_Function()\", \"IsTransactional\": false, \"PropagateIngestionProperties\": true}]'",
+        "content": ".alter table Tabela_Alertas policy update ```\n[\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Temperature_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  },\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Humidity_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  }\n]```",
         "title": "Tab",
-        "dataSourceId": "4ab84dc8-41ff-408a-9fe0-d74d9ae0edf8"
+        "dataSourceId": "87431699-ad5c-4ef1-a9fc-88a86596a0ca"
       },
       {
         "id": "830ffebb-d5e2-4e76-8f08-a29276c5801e",
-        "content": ".set-or-append Tabela_Alertas <|\nV2\n// 1. Procurar as portas abertas\n| where Tipo_de_Evento == \"Door Open\" and toint(Valor) == 1\n// 2. Cruzar com a velocidade no mesmo segundo\n| join kind=leftsemi (\n    V2\n    | where Tipo_de_Evento == \"Speed\" and todouble(Valor) > 10\n) on Comboio, Carruagem, Datahora_Evento\n| extend Tipo_Alerta = \"PERIGO: Porta aberta com comboio em movimento\"\n// 3. A MAGIA (Anti-Join): Só deixa passar as linhas que AINDA NÃO ESTÃO na Tabela_Alertas\n| join kind=leftanti (\n    Tabela_Alertas\n    | where Tipo_Alerta == \"PERIGO: Porta aberta com comboio em movimento\"\n) on Comboio, Carruagem, Datahora_Evento",
+        "content": ".show table Tabela_Alertas policy update",
         "title": "",
-        "dataSourceId": "4ab84dc8-41ff-408a-9fe0-d74d9ae0edf8"
+        "dataSourceId": "87431699-ad5c-4ef1-a9fc-88a86596a0ca"
       }
     ]
   }

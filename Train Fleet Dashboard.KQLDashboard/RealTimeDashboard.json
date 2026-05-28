@@ -1,0 +1,284 @@
+{
+  "schema_version": 75,
+  "autoRefresh": {
+    "enabled": true,
+    "defaultInterval": "30s",
+    "minInterval": "30s"
+  },
+  "tiles": [
+    {
+      "id": "66fb24b1-04ca-4d61-9d2e-11b95cc1b0ae",
+      "title": "Error KPI",
+      "visualType": "stackedcolumn",
+      "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 8,
+        "height": 8
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "535dc29e-c3d3-484a-bfeb-9886f9c551b0"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "seriesColors": {
+          "Comboio:1:Numero_de_Erros": "color--(24)"
+        },
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "Datahora_Event",
+        "xColumn": "Datahora_Evento",
+        "yColumns": [
+          "Numero_de_Erros"
+        ],
+        "seriesColumns": [
+          "Comboio"
+        ],
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "forceAxisTicks": false,
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "95db5fe7-dccf-4d0e-aae1-854a2b675f9c",
+      "title": "Errors Details",
+      "visualType": "table",
+      "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
+      "layout": {
+        "x": 8,
+        "y": 0,
+        "width": 16,
+        "height": 8
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "9e62f875-9ece-4cd1-946f-e6dbe5cef867"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": false,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "939612cc-d73b-408f-827d-df354740fe26",
+      "title": "Temperature Error Number",
+      "visualType": "card",
+      "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
+      "layout": {
+        "x": 0,
+        "y": 8,
+        "width": 3,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "8d4bd512-2dc7-4e04-9d5e-2aac212eda5d"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "large",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": []
+      }
+    },
+    {
+      "id": "e5efdc82-8be6-4b70-abf0-a642e8fcb42a",
+      "title": "Error Location",
+      "visualType": "map",
+      "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
+      "layout": {
+        "x": 8,
+        "y": 8,
+        "width": 16,
+        "height": 9
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "b8cf0850-6ea9-4846-8bbb-1d420e3fbb33"
+      },
+      "visualOptions": {
+        "map__latitudeColumn": null,
+        "map__longitudeColumn": null,
+        "map__labelColumn": null,
+        "map__sizeColumn": null,
+        "map__sizeDisabled": false,
+        "map__geoType": "infer",
+        "map__geoPointColumn": null
+      }
+    },
+    {
+      "id": "6c8a8754-a8fe-41a9-bc29-462331c856ee",
+      "title": "Number of Humidity Errors",
+      "visualType": "card",
+      "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
+      "layout": {
+        "x": 3,
+        "y": 8,
+        "width": 3,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "abf12783-d2ae-4ed0-8692-b8a01ddf46f5"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "large",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": []
+      }
+    }
+  ],
+  "baseQueries": [],
+  "parameters": [
+    {
+      "kind": "duration",
+      "id": "e68e3adc-ad6f-46e6-9ed4-37e0a80bb653",
+      "displayName": "Time range",
+      "description": "",
+      "beginVariableName": "_startTime",
+      "endVariableName": "_endTime",
+      "defaultValue": {
+        "kind": "dynamic",
+        "count": 1,
+        "unit": "hours"
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    },
+    {
+      "kind": "string",
+      "id": "5e8a2f2f-557b-43ab-a24d-097c3655a182",
+      "displayName": "Train Filter",
+      "description": "",
+      "variableName": "p_comboio",
+      "selectionType": "scalar",
+      "includeAllOption": false,
+      "defaultValue": {
+        "kind": "value",
+        "value": "1"
+      },
+      "dataSource": {
+        "kind": "query",
+        "columns": {
+          "value": "Comboio",
+          "label": "Comboio"
+        },
+        "queryRef": {
+          "kind": "query",
+          "queryId": "adbd6e6f-9760-4a6f-8f05-20e773544d08"
+        }
+      },
+      "showOnPages": {
+        "kind": "all"
+      }
+    }
+  ],
+  "dataSources": [
+    {
+      "kind": "kusto-trident",
+      "clusterUri": "",
+      "name": "Raw_Data_datalive",
+      "databaseArtifactId": "75cc065b-0517-4855-8eca-1fa132957dbf",
+      "database": "875b1d64-1a31-ae65-4893-fff353e0256f",
+      "workspace": "00000000-0000-0000-0000-000000000000",
+      "id": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+    }
+  ],
+  "pages": [
+    {
+      "name": "Page 1",
+      "id": "a405cc7d-c248-4a26-b62f-79aad1a3fc43"
+    }
+  ],
+  "queries": [
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Alertas\r\n| summarize Numero_de_Erros = count() by bin(Datahora_Evento, 1d), Tipo_Alerta, Comboio, Carruagem\r\n| order by Datahora_Evento asc",
+      "id": "535dc29e-c3d3-484a-bfeb-9886f9c551b0",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Alertas\r\n// O filtro mágico para a tabela mudar consoante o comboio selecionado no topo\r\n| where tostring(Comboio) == p_comboio\r\n// Ordenar para mostrar os alertas mais recentes no topo\r\n| order by Datahora_Evento desc",
+      "id": "9e62f875-9ece-4cd1-946f-e6dbe5cef867",
+      "usedVariables": [
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Alertas\r\n| where tostring(Comboio) == p_comboio\r\n| where Tipo_Alerta contains \"Temperatura\"\r\n| count",
+      "id": "8d4bd512-2dc7-4e04-9d5e-2aac212eda5d",
+      "usedVariables": [
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Alertas\r\n// 1. Manter o filtro dinâmico do comboio\r\n| where tostring(Comboio) == p_comboio\r\n// 2. Garantir que as coordenadas são lidas como números e existem\r\n| extend Latitude = todouble(Latitude), Longitude = todouble(Longitude)\r\n| where isnotnull(Latitude) and isnotnull(Longitude)\r\n// 3. Trazer apenas as colunas que interessam para o mapa ficar rápido\r\n| project Datahora_Evento, Tipo_Alerta, Carruagem, Latitude, Longitude",
+      "id": "b8cf0850-6ea9-4846-8bbb-1d420e3fbb33",
+      "usedVariables": [
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Alertas\r\n| where tostring(Comboio) == p_comboio\r\n| where Tipo_Alerta contains \"Humidade\"\r\n| count",
+      "id": "abf12783-d2ae-4ed0-8692-b8a01ddf46f5",
+      "usedVariables": [
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "V2\n| distinct Comboio = tostring(Comboio)",
+      "id": "adbd6e6f-9760-4a6f-8f05-20e773544d08",
+      "usedVariables": []
+    }
+  ],
+  "embeddedApps": []
+}
