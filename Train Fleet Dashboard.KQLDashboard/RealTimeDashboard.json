@@ -151,6 +151,104 @@
         "colorRulesDisabled": false,
         "colorRules": []
       }
+    },
+    {
+      "id": "3995d1e8-cc8c-4f4d-84ac-54172f762097",
+      "title": "AC Inefficiency ",
+      "visualType": "bar",
+      "pageId": "41b027f7-f914-4106-bbe1-f888c7bcd664",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 11,
+        "height": 9
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "6bbad13f-c478-4e6b-b4e2-1575e711ac74"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "seriesColors": {
+          "Minutos_Desperdicio": "color--(23)"
+        },
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "forceAxisTicks": false,
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "54c59223-342d-4e82-9989-19f8d152b822",
+      "title": "AC and Open Window",
+      "visualType": "table",
+      "pageId": "41b027f7-f914-4106-bbe1-f888c7bcd664",
+      "layout": {
+        "x": 0,
+        "y": 9,
+        "width": 7,
+        "height": 14
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "7621f40a-2299-46aa-a4fa-4ab6929cbc5e"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "01643287-3132-4aea-91b7-a03213f21058",
+      "title": "Live location",
+      "visualType": "map",
+      "pageId": "69baf379-3cb0-4cdf-9c91-3554039a0f71",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 12,
+        "height": 12
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "dede8784-0c96-419e-a922-43c686c83fb2"
+      },
+      "visualOptions": {
+        "map__latitudeColumn": null,
+        "map__longitudeColumn": null,
+        "map__labelColumn": null,
+        "map__sizeColumn": null,
+        "map__sizeDisabled": true,
+        "map__geoType": "infer",
+        "map__geoPointColumn": null
+      }
     }
   ],
   "baseQueries": [],
@@ -212,8 +310,16 @@
   ],
   "pages": [
     {
-      "name": "Page 1",
+      "name": "Errors Report",
       "id": "a405cc7d-c248-4a26-b62f-79aad1a3fc43"
+    },
+    {
+      "name": "KPI´s",
+      "id": "41b027f7-f914-4106-bbe1-f888c7bcd664"
+    },
+    {
+      "name": "Location",
+      "id": "69baf379-3cb0-4cdf-9c91-3554039a0f71"
     }
   ],
   "queries": [
@@ -269,6 +375,33 @@
       "usedVariables": [
         "p_comboio"
       ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Desperdicio\r\n| summarize Minutos_Desperdicio = count() * 5 by Comboio, Carruagem\r\n| extend Identificacao = strcat(\"Comboio \", Comboio, \" - Carr. \", Carruagem)\r\n// A magia acontece aqui: escondemos tudo o resto e entregamos só 2 colunas ao gráfico!\r\n| project Identificacao, Minutos_Desperdicio\r\n| order by Minutos_Desperdicio desc",
+      "id": "6bbad13f-c478-4e6b-b4e2-1575e711ac74",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Desperdicio\r\n| order by Datahora_Evento desc\r\n| project \r\n    Hora = format_datetime(Datahora_Evento, 'yyyy-MM-dd HH:mm:ss'), \r\n    Comboio, \r\n    Carruagem, \r\n    Alerta = Desperdicio\r\n| take 50",
+      "id": "7621f40a-2299-46aa-a4fa-4ab6929cbc5e",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "V2\r\n// 1. Garantir que só olhamos para dados que têm GPS\r\n| where isnotnull(Latitude) and isnotnull(Longitude)\r\n// 2. A MAGIA: Trazer apenas a localização mais recente de cada comboio!\r\n| summarize arg_max(Datahora_Evento, *) by Comboio\r\n// 3. Limpar a tabela para o mapa ficar bonito e rápido\r\n| project \r\n    Identificacao = strcat(\"Comboio \", Comboio), \r\n    Latitude = todouble(Latitude), \r\n    Longitude = todouble(Longitude), \r\n    Ultima_Atualizacao = format_datetime(Datahora_Evento, 'HH:mm:ss')",
+      "id": "dede8784-0c96-419e-a922-43c686c83fb2",
+      "usedVariables": []
     },
     {
       "dataSource": {
