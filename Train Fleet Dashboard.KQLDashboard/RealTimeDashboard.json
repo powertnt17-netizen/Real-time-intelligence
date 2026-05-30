@@ -1,5 +1,6 @@
 {
   "schema_version": 75,
+  "pagesNavWidth": 324.66665649414063,
   "autoRefresh": {
     "enabled": true,
     "defaultInterval": "30s",
@@ -226,19 +227,63 @@
       }
     },
     {
-      "id": "01643287-3132-4aea-91b7-a03213f21058",
-      "title": "Live location",
+      "id": "f49f2a2f-55da-4836-bee3-ed2b0ba40b7b",
+      "title": "Number of AC - ON Mode",
+      "visualType": "card",
+      "pageId": "41b027f7-f914-4106-bbe1-f888c7bcd664",
+      "layout": {
+        "x": 7,
+        "y": 9,
+        "width": 4,
+        "height": 4
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "3a65df5f-4ca7-4508-aae1-ba64ecc4d6ff"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": []
+      }
+    },
+    {
+      "id": "8e19d2bc-c84f-4a7f-97a8-d7b5b63b400a",
+      "title": "Train Connected",
+      "visualType": "card",
+      "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
+      "layout": {
+        "x": 0,
+        "y": 11,
+        "width": 3,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "5d80b8d3-c233-4b80-abc6-4251b58d53fb"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": []
+      }
+    },
+    {
+      "id": "3fe2163f-40d5-4f23-9642-c26dd888325b",
+      "title": "Map",
       "visualType": "map",
       "pageId": "69baf379-3cb0-4cdf-9c91-3554039a0f71",
       "layout": {
         "x": 0,
         "y": 0,
-        "width": 12,
-        "height": 12
+        "width": 24,
+        "height": 22
       },
       "queryRef": {
         "kind": "query",
-        "queryId": "dede8784-0c96-419e-a922-43c686c83fb2"
+        "queryId": "390da54f-22cc-4c94-8a71-2ed9e8f4d976"
       },
       "visualOptions": {
         "map__latitudeColumn": null,
@@ -248,6 +293,187 @@
         "map__sizeDisabled": true,
         "map__geoType": "infer",
         "map__geoPointColumn": null
+      }
+    },
+    {
+      "id": "0a454fdb-2ab9-4389-9f3a-a77bcc6dd498",
+      "title": "Kg of CO2 today",
+      "visualType": "card",
+      "pageId": "41b027f7-f914-4106-bbe1-f888c7bcd664",
+      "layout": {
+        "x": 7,
+        "y": 13,
+        "width": 4,
+        "height": 4
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "9ed480aa-2083-48c7-a14f-86e303923309"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": []
+      }
+    },
+    {
+      "id": "7d973733-d211-445a-9fba-8b6ec2bcccdf",
+      "title": "Max Temp today",
+      "visualType": "card",
+      "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 5,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "3069c823-8e3f-43d6-989b-8a9ab32c63a9"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": []
+      }
+    },
+    {
+      "id": "6383a0c7-8105-4f0b-954f-ab8f1110a6f6",
+      "title": "Fleet Temp & Humidity",
+      "visualType": "line",
+      "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
+      "layout": {
+        "x": 5,
+        "y": 0,
+        "width": 19,
+        "height": 8
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "46fdafe5-b78f-49da-b53c-4668a8f13f22"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "seriesColors": {},
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "forceAxisTicks": false,
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "fbd7cad1-8381-4afa-a726-74b39f8ac58d",
+      "title": "Max Humidity today",
+      "visualType": "card",
+      "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
+      "layout": {
+        "x": 0,
+        "y": 6,
+        "width": 5,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "a3e3a28a-acb8-4840-a0f3-ab640ee24b9d"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": []
+      }
+    },
+    {
+      "id": "f454742b-19d7-4cd1-883c-eb0248bbf8fd",
+      "title": "Min Temp Today",
+      "visualType": "card",
+      "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
+      "layout": {
+        "x": 0,
+        "y": 3,
+        "width": 5,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "b70550a7-0106-4a2d-bb83-ab7e5bba8fd3"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": []
+      }
+    },
+    {
+      "id": "17f5a6cd-0c79-404a-982d-75b8194ab4f4",
+      "title": "Min Humidity Today",
+      "visualType": "card",
+      "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
+      "layout": {
+        "x": 0,
+        "y": 9,
+        "width": 5,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "63413e71-996e-42f3-97ac-53168633f5d4"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": []
+      }
+    },
+    {
+      "id": "55d35fbe-edff-4533-936b-65ead59ffe81",
+      "title": "Untitled",
+      "visualType": "table",
+      "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
+      "layout": {
+        "x": 5,
+        "y": 8,
+        "width": 19,
+        "height": 14
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "33f6b874-7395-407b-b7df-cd7f659643a6"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
       }
     }
   ],
@@ -276,7 +502,7 @@
       "description": "",
       "variableName": "p_comboio",
       "selectionType": "scalar",
-      "includeAllOption": false,
+      "includeAllOption": true,
       "defaultValue": {
         "kind": "value",
         "value": "1"
@@ -320,6 +546,10 @@
     {
       "name": "Location",
       "id": "69baf379-3cb0-4cdf-9c91-3554039a0f71"
+    },
+    {
+      "name": "Temp and Humidity",
+      "id": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19"
     }
   ],
   "queries": [
@@ -337,9 +567,11 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "Tabela_Alertas\r\n// O filtro mágico para a tabela mudar consoante o comboio selecionado no topo\r\n| where tostring(Comboio) == p_comboio\r\n// Ordenar para mostrar os alertas mais recentes no topo\r\n| order by Datahora_Evento desc",
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento in (\"Temperature\", \"Humidity\")\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or Comboio in (p_comboio)\r\n| order by Datahora_Evento desc\r\n| take 500",
       "id": "9e62f875-9ece-4cd1-946f-e6dbe5cef867",
       "usedVariables": [
+        "_endTime",
+        "_startTime",
         "p_comboio"
       ]
     },
@@ -348,7 +580,7 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "Tabela_Alertas\r\n| where tostring(Comboio) == p_comboio\r\n| where Tipo_Alerta contains \"Temperatura\"\r\n| count",
+      "text": "Tabela_Alertas\r\n// A linha mágica que entende o \"All\" ou filtra pelo comboio específico\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n| where Tipo_Alerta contains \"Temperatura\"\r\n| count",
       "id": "8d4bd512-2dc7-4e04-9d5e-2aac212eda5d",
       "usedVariables": [
         "p_comboio"
@@ -370,7 +602,7 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "Tabela_Alertas\r\n| where tostring(Comboio) == p_comboio\r\n| where Tipo_Alerta contains \"Humidade\"\r\n| count",
+      "text": "Tabela_Alertas\r\n// A linha inteligente que entende o \"All\" ou filtra pelo comboio específico\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n| where Tipo_Alerta contains \"Humidade\"\r\n| count",
       "id": "abf12783-d2ae-4ed0-8692-b8a01ddf46f5",
       "usedVariables": [
         "p_comboio"
@@ -399,9 +631,98 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "V2\r\n// 1. Garantir que só olhamos para dados que têm GPS\r\n| where isnotnull(Latitude) and isnotnull(Longitude)\r\n// 2. A MAGIA: Trazer apenas a localização mais recente de cada comboio!\r\n| summarize arg_max(Datahora_Evento, *) by Comboio\r\n// 3. Limpar a tabela para o mapa ficar bonito e rápido\r\n| project \r\n    Identificacao = strcat(\"Comboio \", Comboio), \r\n    Latitude = todouble(Latitude), \r\n    Longitude = todouble(Longitude), \r\n    Ultima_Atualizacao = format_datetime(Datahora_Evento, 'HH:mm:ss')",
-      "id": "dede8784-0c96-419e-a922-43c686c83fb2",
+      "text": "V2\r\n| where Tipo_de_Evento == \"HVAC Status\"\r\n// Vai buscar apenas a última leitura de cada AC em cada carruagem\r\n| summarize arg_max(Datahora_Evento, Valor) by Comboio, Carruagem\r\n| where todouble(Valor) > 0\r\n| count",
+      "id": "3a65df5f-4ca7-4508-aae1-ba64ecc4d6ff",
       "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "V2\r\n// 1. Ouve o calendário do dashboard\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n// 2. A nossa regra inteligente do \"All\"\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n| summarize Frota_Online = dcount(Comboio)",
+      "id": "5d80b8d3-c233-4b80-abc6-4251b58d53fb",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "V2\r\n| where isnotnull(Latitude) and isnotnull(Longitude)\r\n// Vai buscar APENAS o último sinal GPS de cada comboio\r\n| summarize arg_max(Datahora_Evento, *) by Comboio\r\n| project \r\n    Comboio = strcat(\"Comboio \", Comboio), \r\n    Latitude = todouble(Latitude), \r\n    Longitude = todouble(Longitude),\r\n    Ultima_Vez_Visto = format_datetime(Datahora_Evento, 'HH:mm:ss')",
+      "id": "390da54f-22cc-4c94-8a71-2ed9e8f4d976",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Desperdicio\r\n| summarize Minutos_Totais = count() * 5\r\n// Assume-se ~0.5 kWh por minuto de AC e ~0.25 kg de CO2 por kWh (média europeia)\r\n| extend Energia_Desperdicada_kWh = Minutos_Totais * 0.5\r\n| extend Pegada_CO2_kg = Energia_Desperdicada_kWh * 0.25\r\n| project Pegada_CO2_kg",
+      "id": "9ed480aa-2083-48c7-a14f-86e303923309",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Temperature\"\r\n// Janela alargada para 24h para garantir que vês sempre os dados dos teus testes de hoje!\r\n| where todatetime(Datahora_Evento) > ago(24h)\r\n| summarize Temp_Maxima = max(todouble(Valor)) by Comboio, Carruagem\r\n| top 1 by Temp_Maxima\r\n| project Alerta = strcat(\"Value: \", Temp_Maxima, \"°C (Train. \", Comboio, \")\")",
+      "id": "3069c823-8e3f-43d6-989b-8a9ab32c63a9",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento in (\"Temperature\", \"Humidity\")\r\n// Garantir que os valores são tratados como números decimais\r\n| extend Valor_Numerico = todouble(Valor)\r\n// Fazer a média de 15 em 15 minutos por cada tipo de sensor\r\n| summarize Media_Valor = avg(Valor_Numerico) by Tipo_de_Evento, JanelaTempo = bin(todatetime(Datahora_Evento), 15m)\r\n| order by JanelaTempo asc",
+      "id": "46fdafe5-b78f-49da-b53c-4668a8f13f22",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Humidity\"\r\n// Mantemos a janela de 24h para garantir que vês os dados dos testes de hoje\r\n| where todatetime(Datahora_Evento) > ago(24h)\r\n| summarize Max_Humidade = max(todouble(Valor)) by Comboio, Carruagem\r\n| top 1 by Max_Humidade\r\n| project Alerta = strcat(\"Value: \", Max_Humidade, \"% (Train. \", Comboio, \")\")",
+      "id": "a3e3a28a-acb8-4840-a0f3-ab640ee24b9d",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Temperature\"\r\n| where todatetime(Datahora_Evento) > ago(24h)\r\n| summarize Min_Temp = min(todouble(Valor)) by Comboio, Carruagem\r\n// O 'asc' é fundamental aqui para trazer o valor mais baixo para o topo!\r\n| top 1 by Min_Temp asc\r\n| project Alerta = strcat(\"Value: \", Min_Temp, \"°C (Train. \", Comboio, \")\")",
+      "id": "b70550a7-0106-4a2d-bb83-ab7e5bba8fd3",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Humidity\"\r\n| where todatetime(Datahora_Evento) > ago(24h)\r\n| summarize Min_Humidade = min(todouble(Valor)) by Comboio, Carruagem\r\n| top 1 by Min_Humidade asc\r\n| project Alerta = strcat(\"Min: \", Min_Humidade, \"% (Train \", Comboio, \")\")",
+      "id": "63413e71-996e-42f3-97ac-53168633f5d4",
+      "usedVariables": []
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento in (\"Temperature\", \"Humidity\")\r\n// 1. Ouve o filtro de tempo do topo da página\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n// 2. Ouve o filtro do comboio\r\n| where Comboio in (p_comboio) \r\n// 3. Ordena do registo mais recente para o mais antigo (usando a coluna original)\r\n| order by Datahora_Evento desc\r\n// 4. Traz as últimas 500 linhas para o dashboard manter a performance\r\n| take 500",
+      "id": "33f6b874-7395-407b-b7df-cd7f659643a6",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
     },
     {
       "dataSource": {

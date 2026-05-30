@@ -26,6 +26,16 @@ from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 from delta.tables import DeltaTable
 
+# --- 0. LIMPEZA AUTOMÁTICA DO CHECKPOINT (MODO DESENVOLVIMENTO) ---
+checkpoint_path = "Files/checkpoints/train_fleet_dev"
+
+try:
+    mssparkutils.fs.rm(checkpoint_path, True)
+    print("Memória do Checkpoint limpa. A iniciar leitura do zero...")
+except Exception as e:
+    print("Nenhum checkpoint anterior encontrado.")
+# ------------------------------------------------------------------
+
 # 1. LER DA TABELA BRUTA
 df_stream = spark.readStream.table("dbo.Raw_data_lakehouse") \
     .filter("Tipo_de_Evento IN ('Temperature', 'Humidity', 'Door Open', 'Lights')")
@@ -36,7 +46,7 @@ window_spec = Window.partitionBy("Comboio", "Carruagem", "ID_Equipamento").order
 def process_batch(batch_df, batch_id):
     if batch_df.isEmpty():
         return
-        
+    
     # 3. DEDUPLICAÇÃO DENTRO DO PRÓPRIO LOTE (Micro-batch)
     enriched_df = batch_df.withColumn("prev_valor", F.lag("Valor").over(window_spec)) \
         .filter("Valor != prev_valor OR prev_valor IS NULL") \
@@ -44,20 +54,17 @@ def process_batch(batch_df, batch_id):
         
     # --- A NOVA COLUNA DA CHAVE COMPOSTA ---
     enriched_df = enriched_df.withColumn("Chave_Ativo", F.concat_ws("-", F.col("Comboio"), F.col("Carruagem")))
-
-    # 4. ESCREVER NA TABELA (MERGE PARA EVITAR DUPLICADOS ENTRE LOTES DIFERENTES)
+    
+    # 4. ESCREVER NA TABELA (MERGE PARA EVITAR DUPLICADOS)
     try:
-        # Tenta aceder à tabela de destino
         dt = DeltaTable.forName(spark, "dbo.tabela_variaveis_lentas_filtrada")
         
-        # Faz o cruzamento para garantir que o mesmo sensor não envia o mesmo estado no mesmo segundo
         dt.alias("target").merge(
             enriched_df.alias("source"),
             "target.Comboio = source.Comboio AND target.Carruagem = source.Carruagem AND target.ID_Equipamento = source.ID_Equipamento AND target.Valor = source.Valor"
         ).whenNotMatchedInsertAll().execute()
         
     except Exception as e:
-        # Se for a primeira execução e a tabela não existir, ele cria-a aqui
         enriched_df.write \
             .format("delta") \
             .mode("append") \
@@ -67,13 +74,11 @@ def process_batch(batch_df, batch_id):
 # 5. ARRANCAR O MOTOR (Streaming Real-Time 24/7)
 query = df_stream.writeStream \
     .foreachBatch(process_batch) \
-    .option("checkpointLocation", "Files/checkpoints/train_fleet_v4") \
+    .option("checkpointLocation", checkpoint_path) \
     .start()
 
 # 6. MANTER O SERVIDOR LIGADO SEM LIMITE
 query.awaitTermination()
-
-
 
 # METADATA ********************
 
