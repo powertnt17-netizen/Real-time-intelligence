@@ -3,13 +3,13 @@
     "version": "1.0.0",
     "dataSources": [
       {
-        "id": "0cb024e1-507c-4909-bb77-4e026674fecb",
+        "id": "08de9329-7809-415f-8559-bbf95ddf15a6",
         "clusterUri": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
         "type": "Fabric",
         "databaseItemId": "Raw_Data_datalive"
       },
       {
-        "id": "07dd875c-c896-48f8-976f-f7782f40a91f",
+        "id": "1ae5376c-2343-48c2-9e93-736c4afe7a9c",
         "clusterUri": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
         "type": "Fabric",
         "databaseItemId": "Raw_Data_datalive"
@@ -20,19 +20,19 @@
         "id": "4e464cab-8b90-4be0-bae1-f7a0dd7a84c6",
         "content": ".alter table Tabela_Alertas policy update ```\n[\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Temperature_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  },\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Humidity_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  }\n]```",
         "title": "Tab",
-        "dataSourceId": "07dd875c-c896-48f8-976f-f7782f40a91f"
+        "dataSourceId": "1ae5376c-2343-48c2-9e93-736c4afe7a9c"
       },
       {
         "id": "830ffebb-d5e2-4e76-8f08-a29276c5801e",
         "content": "let Gaveta_Janelas = Sliding_Window_5min \n    | where Tipo_de_Evento == \"Window Open\" and todouble(Valor) > 0\n    | extend BlocoTempo = bin(todatetime(Datahora_Evento), 5m);\nlet Gaveta_AC = Sliding_Window_5min \n    | where Tipo_de_Evento == \"HVAC Status\" and todouble(Valor) > 0\n    | extend BlocoTempo = bin(todatetime(Datahora_Evento), 5m);\nGaveta_Janelas\n| join kind=inner (Gaveta_AC) on Comboio, Carruagem, BlocoTempo\n// Aqui aplicamos a limpeza mágica para remover as duplicações:\n| distinct Datahora_Evento = BlocoTempo, Comboio, Carruagem\n| extend Desperdicio = \"Janela Aberta + AC Ligado\"\n| order by Datahora_Evento desc",
         "title": "",
-        "dataSourceId": "07dd875c-c896-48f8-976f-f7782f40a91f"
+        "dataSourceId": "1ae5376c-2343-48c2-9e93-736c4afe7a9c"
       },
       {
         "id": "42d30281-869b-4457-ad4d-adf738af5b97",
-        "content": "tabela_variaveis_lentas_filtrada\n| where Comboio == \"1\" and Valor == 600",
+        "content": "V2\n| where Tipo_de_Evento == \"Smoke Detector\"",
         "title": "",
-        "dataSourceId": "07dd875c-c896-48f8-976f-f7782f40a91f"
+        "dataSourceId": "1ae5376c-2343-48c2-9e93-736c4afe7a9c"
       }
     ]
   }
