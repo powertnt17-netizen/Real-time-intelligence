@@ -1,11 +1,11 @@
 {
   "sources": [
     {
-      "id": "3042c118-0fbc-4190-a4c3-47943f5403c3",
-      "name": "new-source",
+      "id": "1e150df2-9c5e-472d-80ab-b962059e30b3",
+      "name": "azure-event-hub",
       "type": "AzureEventHub",
       "properties": {
-        "dataConnectionId": "210bfee4-f9c2-4a2e-ac0a-363e96d5ff08",
+        "dataConnectionId": "a54f00fb-e008-4e47-9ee8-9fe13fc22b09",
         "consumerGroupName": "$Default",
         "inputSerialization": {
           "type": "Json",
@@ -289,7 +289,7 @@
       "properties": {},
       "inputNodes": [
         {
-          "name": "new-source"
+          "name": "azure-event-hub"
         }
       ]
     }
