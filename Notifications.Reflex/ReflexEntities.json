@@ -202,5 +202,209 @@
       }
     },
     "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "1b701790-63c7-44a6-b9da-fabdc0b4ead8",
+    "payload": {
+      "name": "Activator",
+      "description": "Container Description",
+      "type": "kqlQueries"
+    },
+    "type": "container-v1"
+  },
+  {
+    "uniqueIdentifier": "e5efb861-246b-42b9-93fa-686e5fe06fcf",
+    "payload": {
+      "name": "Raw_Data_datalive event",
+      "runSettings": {
+        "executionIntervalInSeconds": 60
+      },
+      "query": {
+        "queryString": "V2\n| where todatetime(Datahora_Evento) >= ago(1m)\n| where Tipo_de_Evento == \"Smoke Detector\" and todouble(Valor) == 1"
+      },
+      "eventhouseItem": {
+        "itemId": "875b1d64-1a31-ae65-4893-fff353e0256f",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemType": "KustoDatabase"
+      },
+      "queryParameters": [],
+      "metadata": {
+        "workspaceId": "e9ab2e73-7dab-4a9a-83ba-4f0432562ce1",
+        "querySetId": "b4a4ab25-de2a-4d9c-8563-bd4134a53c34",
+        "queryId": "abd4a538-6803-4b13-8d8d-5ac50716d07c"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "1b701790-63c7-44a6-b9da-fabdc0b4ead8"
+      }
+    },
+    "type": "kqlSource-v1"
+  },
+  {
+    "uniqueIdentifier": "489e8fb0-af2a-4e9f-8aa9-a0a16650cb69",
+    "payload": {
+      "name": "Raw_Data_datalive event",
+      "parentContainer": {
+        "targetUniqueIdentifier": "1b701790-63c7-44a6-b9da-fabdc0b4ead8"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"steps\":[{\"id\":\"ba4d0d7e-5db6-4d77-87b7-f9d5995f9d8c\",\"name\":\"SourceEventStep\",\"rows\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"e5efb861-246b-42b9-93fa-686e5fe06fcf\"}],\"kind\":\"SourceReference\",\"name\":\"SourceSelector\"}]}],\"templateId\":\"SourceEvent\",\"templateVersion\":\"1.2.6\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "23c30fd0-1acd-4be2-931c-b902ad5bc951",
+    "payload": {
+      "name": "Smoke Detection",
+      "parentContainer": {
+        "targetUniqueIdentifier": "1b701790-63c7-44a6-b9da-fabdc0b4ead8"
+      },
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"e690811a-9fea-4e2e-908c-de746ad84a6e\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"489e8fb0-af2a-4e9f-8aa9-a0a16650cb69\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"9b6a9903-e31f-42bd-9d12-5781bc4c31f1\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"1e7656c7-04f6-461c-8b55-d9a4ae74d1aa\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\" Smoke Detection\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Smoke Detected\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Carruagem\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Carruagem\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Comboio\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Comboio\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Datahora_Evento\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Datahora_Evento\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"ID_Equipamento\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"ID_Equipamento\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Latitude\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Latitude\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Longitude\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Longitude\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"TipoEquipamento\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"TipoEquipamento\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Tipo_de_Evento\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Tipo_de_Evento\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Valor\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Valor\"}],\"name\":\"reference\"}]}]}]}]}]}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": false
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "c63e4226-2b8e-4d81-abfb-88dacb34cc6d",
+    "payload": {
+      "name": "Activator",
+      "description": "Container Description",
+      "type": "kqlQueries"
+    },
+    "type": "container-v1"
+  },
+  {
+    "uniqueIdentifier": "0acd9df2-4b0a-4cb5-ab68-28fe331c0890",
+    "payload": {
+      "name": "Raw_Data_datalive event",
+      "runSettings": {
+        "executionIntervalInSeconds": 60
+      },
+      "query": {
+        "queryString": "V2\n| where todatetime(Datahora_Evento) >= ago(1m)\n| where Tipo_de_Evento == \"Speed\" and todouble(Valor) > 120\n"
+      },
+      "eventhouseItem": {
+        "itemId": "875b1d64-1a31-ae65-4893-fff353e0256f",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemType": "KustoDatabase"
+      },
+      "queryParameters": [],
+      "metadata": {
+        "workspaceId": "e9ab2e73-7dab-4a9a-83ba-4f0432562ce1",
+        "querySetId": "b4a4ab25-de2a-4d9c-8563-bd4134a53c34",
+        "queryId": "a95991d2-44cb-4110-ad22-dffa690886a6"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "c63e4226-2b8e-4d81-abfb-88dacb34cc6d"
+      }
+    },
+    "type": "kqlSource-v1"
+  },
+  {
+    "uniqueIdentifier": "d158e196-8e77-433f-88c9-cd61ab4bc1b2",
+    "payload": {
+      "name": "Raw_Data_datalive event",
+      "parentContainer": {
+        "targetUniqueIdentifier": "c63e4226-2b8e-4d81-abfb-88dacb34cc6d"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"steps\":[{\"id\":\"45d2bf2b-b808-479d-b9e4-2c1141e5fae3\",\"name\":\"SourceEventStep\",\"rows\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"0acd9df2-4b0a-4cb5-ab68-28fe331c0890\"}],\"kind\":\"SourceReference\",\"name\":\"SourceSelector\"}]}],\"templateId\":\"SourceEvent\",\"templateVersion\":\"1.2.6\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "6922094a-69db-436d-81ff-15bc47c8fd0c",
+    "payload": {
+      "name": "Speed Limit",
+      "parentContainer": {
+        "targetUniqueIdentifier": "c63e4226-2b8e-4d81-abfb-88dacb34cc6d"
+      },
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"fa377133-0514-43af-a8ad-95a9a75bb35e\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"d158e196-8e77-433f-88c9-cd61ab4bc1b2\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"dc832089-f51b-4a94-8cde-3b00dfacdc5d\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"e31152b0-b838-420d-8eef-366bc5fe3096\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator alert Speed Limit\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"The condition for 'Speed Limit' has been met\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": false
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "0e3bd72b-6a17-4cb6-9703-01ce3b24f99b",
+    "payload": {
+      "name": "Activator",
+      "description": "Container Description",
+      "type": "kqlQueries"
+    },
+    "type": "container-v1"
+  },
+  {
+    "uniqueIdentifier": "2290a99c-09a6-4400-98ce-e3b01af49156",
+    "payload": {
+      "name": "Raw_Data_datalive event",
+      "runSettings": {
+        "executionIntervalInSeconds": 60
+      },
+      "query": {
+        "queryString": "V2\r\n| where todatetime(Datahora_Evento) >= ago(1m)\r\n// Agrupamos ao segundo exato para garantir que a leitura física é simultânea\r\n| summarize \r\n    Velocidade = maxif(todouble(Valor), Tipo_de_Evento == \"Speed\"), \r\n    Pressao_Travoes = maxif(todouble(Valor), Tipo_de_Evento == \"Brake Pressure\") \r\n    by Comboio, Carruagem, Janela_Tempo = bin(todatetime(Datahora_Evento), 1s)\r\n// A verdadeira anomalia (Brake Drag): Andar a mais de 20 km/h com travões a fundo (> 3.5 Bar)\r\n| where Velocidade > 20 and Pressao_Travoes > 3.5"
+      },
+      "eventhouseItem": {
+        "itemId": "875b1d64-1a31-ae65-4893-fff353e0256f",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemType": "KustoDatabase"
+      },
+      "queryParameters": [],
+      "metadata": {
+        "workspaceId": "e9ab2e73-7dab-4a9a-83ba-4f0432562ce1",
+        "querySetId": "b4a4ab25-de2a-4d9c-8563-bd4134a53c34",
+        "queryId": "012e720a-a1b7-4599-9bf3-18bbf6dc3756"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "0e3bd72b-6a17-4cb6-9703-01ce3b24f99b"
+      }
+    },
+    "type": "kqlSource-v1"
+  },
+  {
+    "uniqueIdentifier": "ec1b2866-03e7-42dc-a8db-6dd13bd89f5e",
+    "payload": {
+      "name": "Raw_Data_datalive event",
+      "parentContainer": {
+        "targetUniqueIdentifier": "0e3bd72b-6a17-4cb6-9703-01ce3b24f99b"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"steps\":[{\"id\":\"3a51e85e-9616-469d-abb4-a1251e8a5988\",\"name\":\"SourceEventStep\",\"rows\":[{\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"2290a99c-09a6-4400-98ce-e3b01af49156\"}],\"kind\":\"SourceReference\",\"name\":\"SourceSelector\"}]}],\"templateId\":\"SourceEvent\",\"templateVersion\":\"1.2.6\"}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "66173552-a25f-48ea-9fed-860c818d6952",
+    "payload": {
+      "name": "Stuck Brake",
+      "parentContainer": {
+        "targetUniqueIdentifier": "0e3bd72b-6a17-4cb6-9703-01ce3b24f99b"
+      },
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"2eac5117-f966-4517-ab34-f9a2ad10f9de\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"ec1b2866-03e7-42dc-a8db-6dd13bd89f5e\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"b3653567-feee-4d28-85ff-a9b3ba8fe1b5\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"4765698b-eb2f-4924-87ae-ebb1de956124\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Stuck Brake\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"The condition for 'Stuck Brake' has been met\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Comboio\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Comboio\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Carruagem\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Carruagem\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Janela_Tempo\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Janela_Tempo\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Velocidade\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Velocidade\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Pressao_Travoes\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Pressao_Travoes\"}],\"name\":\"reference\"}]}]}]}]}]}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": false
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
   }
 ]

@@ -27,6 +27,24 @@
         "content": "V2\n| where Datahora_Evento >= ago(1m)\n| where Tipo_de_Evento == \"Door Open\" and toint(Valor) == 1\n| join kind=leftsemi (\n    V2\n    | where Datahora_Evento >= ago(1m)\n    | where Tipo_de_Evento == \"Speed\" and todouble(Valor) > 10\n) on Comboio, Carruagem, Datahora_Evento",
         "title": "Door In Movement",
         "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "abd4a538-6803-4b13-8d8d-5ac50716d07c",
+        "content": "V2\n| where todatetime(Datahora_Evento) >= ago(1m)\n| where Tipo_de_Evento == \"Smoke Detector\" and todouble(Valor) == 1",
+        "title": "Smoke_Detector",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "a95991d2-44cb-4110-ad22-dffa690886a6",
+        "content": "V2\n| where todatetime(Datahora_Evento) >= ago(1m)\n| where Tipo_de_Evento == \"Speed\" and todouble(Valor) > 120\n",
+        "title": "Speed Limit",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "012e720a-a1b7-4599-9bf3-18bbf6dc3756",
+        "content": "V2\n| where todatetime(Datahora_Evento) >= ago(1m)\n// Agrupamos ao segundo exato para garantir que a leitura física é simultânea\n| summarize \n    Velocidade = maxif(todouble(Valor), Tipo_de_Evento == \"Speed\"), \n    Pressao_Travoes = maxif(todouble(Valor), Tipo_de_Evento == \"Brake Pressure\") \n    by Comboio, Carruagem, Janela_Tempo = bin(todatetime(Datahora_Evento), 1s)\n// A verdadeira anomalia (Brake Drag): Andar a mais de 20 km/h com travões a fundo (> 3.5 Bar)\n| where Velocidade > 20 and Pressao_Travoes > 3.5",
+        "title": "Stuck_ Brake",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
       }
     ]
   }
