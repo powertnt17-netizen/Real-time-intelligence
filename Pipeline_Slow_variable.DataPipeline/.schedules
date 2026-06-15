@@ -11,6 +11,17 @@
         "localTimeZoneId": "GMT Standard Time",
         "interval": 1
       }
+    },
+    {
+      "enabled": false,
+      "jobType": "Execute",
+      "configuration": {
+        "type": "Cron",
+        "startDateTime": "2026-06-14T16:35:00",
+        "endDateTime": "2080-01-14T16:35:00",
+        "localTimeZoneId": "GMT Standard Time",
+        "interval": 5
+      }
     }
   ]
 }

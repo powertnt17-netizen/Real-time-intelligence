@@ -27,6 +27,8 @@ from pyspark.sql.window import Window
 from delta.tables import DeltaTable
 
 # --- 0. LIMPEZA AUTOMÁTICA DO CHECKPOINT (MODO DESENVOLVIMENTO) ---
+# Dica para Produção: Quando a tese for apresentada, podes comentar o 'mssparkutils.fs.rm' 
+# para que o checkpoint guarde efetivamente a memória entre execuções do Pipeline.
 checkpoint_path = "Files/checkpoints/train_fleet_dev"
 
 try:
@@ -71,13 +73,14 @@ def process_batch(batch_df, batch_id):
             .option("mergeSchema", "true") \
             .saveAsTable("dbo.tabela_variaveis_lentas_filtrada")
 
-# 5. ARRANCAR O MOTOR (Streaming Real-Time 24/7)
+# 5. ARRANCAR O MOTOR (Processar os dados pendentes e desligar)
 query = df_stream.writeStream \
     .foreachBatch(process_batch) \
     .option("checkpointLocation", checkpoint_path) \
+    .trigger(availableNow=True) \
     .start()
 
-# 6. MANTER O SERVIDOR LIGADO SEM LIMITE
+# 6. ESPERAR PELO FIM DO LOTE ATUAL (O Notebook terminará com Succeeded)
 query.awaitTermination()
 
 # METADATA ********************

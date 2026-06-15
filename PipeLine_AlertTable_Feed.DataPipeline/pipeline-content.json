@@ -1,0 +1,71 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "KustoQueryLanguage",
+        "typeProperties": {
+          "command": ".set-or-append Tabela_Alertas <|\n// 1. Filtrar apenas os últimos 2 minutos\nlet Janela_Recente = V2 | where todatetime(Datahora_Evento) >= ago(2m);\n//\n// 2. Encontrar os \"segundos de perigo\" (Velocidade > 20 + Pressão > 3.5)\nlet Segundos_Perigo = Janela_Recente\n    | where Tipo_de_Evento in (\"Speed\", \"Brake Pressure\")\n    | summarize \n        Velocidade = maxif(todouble(Valor), Tipo_de_Evento == \"Speed\"),\n        Pressao_Travoes = maxif(todouble(Valor), Tipo_de_Evento == \"Brake Pressure\")\n        by Comboio, Carruagem, SegundoExato = bin(todatetime(Datahora_Evento), 1s)\n    | where Velocidade > 20 and Pressao_Travoes > 3.5;\n//\n// 3. Recuperar os detalhes do sensor (Lat/Long/ID) usando a Pressão como âncora\nJanela_Recente\n| where Tipo_de_Evento == \"Brake Pressure\" and todouble(Valor) > 3.5\n| extend SegundoExato = bin(todatetime(Datahora_Evento), 1s)\n| join kind=inner (Segundos_Perigo) on Comboio, Carruagem, SegundoExato\n//\n// 4. Formatar para a Tabela_Alertas\n| extend Tipo_Alerta = \"PERIGO: Travões trancados em andamento (Brake Drag)\"\n| project \n    Carruagem = tostring(Carruagem), \n    Comboio = tostring(Comboio), \n    Datahora_Evento = todatetime(Datahora_Evento), \n    ID_Equipamento = tostring(ID_Equipamento), \n    Latitude = todouble(Latitude), \n    Longitude = todouble(Longitude), \n    TipoEquipamento = tostring(TipoEquipamento), \n    Tipo_de_Evento = tostring(Tipo_de_Evento), \n    Valor = todouble(Valor), \n    Tipo_Alerta\n//\n// 5. O Bloqueio Anti-Duplicados\n| join kind=leftanti (\n    Tabela_Alertas\n    | where todatetime(Datahora_Evento) >= ago(3m)\n    | where Tipo_Alerta == \"PERIGO: Travões trancados em andamento (Brake Drag)\"\n) on Comboio, Carruagem, Datahora_Evento",
+          "commandTimeout": "00:20:00"
+        },
+        "linkedService": {
+          "name": "Raw_Data_datalive",
+          "properties": {
+            "type": "KustoDatabase",
+            "typeProperties": {
+              "endpoint": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
+              "workspaceId": "00000000-0000-0000-0000-000000000000",
+              "database": "875b1d64-1a31-ae65-4893-fff353e0256f"
+            },
+            "annotations": []
+          },
+          "objectId": "75cc065b-0517-4855-8eca-1fa132957dbf"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Script Stuck Brake - Alert Table Feed",
+        "dependsOn": [
+          {
+            "activity": "Door_Movement",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "KustoQueryLanguage",
+        "typeProperties": {
+          "command": ".set-or-append Tabela_Alertas <|\n// 1. Filtrar apenas os últimos 2 minutos para performance\nlet Janela_Recente = V2 | where todatetime(Datahora_Evento) >= ago(2m);\n//\n// 2. Encontrar os \"segundos de perigo\" (Porta aberta + Velocidade > 10)\nlet Segundos_Perigo = Janela_Recente\n    | where Tipo_de_Evento in (\"Door Open\", \"Speed\")\n    | summarize \n        Estado_Porta = maxif(toint(Valor), Tipo_de_Evento == \"Door Open\"),\n        Velocidade = maxif(todouble(Valor), Tipo_de_Evento == \"Speed\")\n        by Comboio, Carruagem, SegundoExato = bin(todatetime(Datahora_Evento), 1s)\n    | where Estado_Porta == 1 and Velocidade > 10;\n//\n// 3. Recuperar os detalhes do sensor da porta (Lat/Long/ID) para guardar na tabela\nJanela_Recente\n| where Tipo_de_Evento == \"Door Open\" and toint(Valor) == 1\n| extend SegundoExato = bin(todatetime(Datahora_Evento), 1s) // Criar a mesma chave de 1 segundo\n| join kind=inner (Segundos_Perigo) on Comboio, Carruagem, SegundoExato // Só guarda se estiver na lista de perigo\n//\n// 4. Formatar para a Tabela_Alertas\n| extend Tipo_Alerta = \"PERIGO: Porta aberta com comboio em movimento\"\n| project \n    Carruagem = tostring(Carruagem), \n    Comboio = tostring(Comboio), \n    Datahora_Evento = todatetime(Datahora_Evento), \n    ID_Equipamento = tostring(ID_Equipamento), \n    Latitude = todouble(Latitude), \n    Longitude = todouble(Longitude), \n    TipoEquipamento = tostring(TipoEquipamento), \n    Tipo_de_Evento = tostring(Tipo_de_Evento), \n    Valor = todouble(Valor), \n    Tipo_Alerta\n//\n// 5. O Bloqueio Anti-Duplicados (proteção do Pipeline de 1 minuto)\n| join kind=leftanti (\n    Tabela_Alertas\n    | where todatetime(Datahora_Evento) >= ago(3m) // Otimização: Só verifica duplicados recentes!\n    | where Tipo_Alerta == \"PERIGO: Porta aberta com comboio em movimento\"\n) on Comboio, Carruagem, Datahora_Evento",
+          "commandTimeout": "00:20:00"
+        },
+        "linkedService": {
+          "name": "Raw_Data_datalive",
+          "properties": {
+            "type": "KustoDatabase",
+            "typeProperties": {
+              "endpoint": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
+              "workspaceId": "00000000-0000-0000-0000-000000000000",
+              "database": "875b1d64-1a31-ae65-4893-fff353e0256f"
+            },
+            "annotations": []
+          },
+          "objectId": "75cc065b-0517-4855-8eca-1fa132957dbf"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Door_Movement",
+        "dependsOn": []
+      }
+    ]
+  }
+}

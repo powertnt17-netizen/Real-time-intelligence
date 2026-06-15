@@ -16,35 +16,6 @@
         },
         "name": "Notebook1",
         "dependsOn": []
-      },
-      {
-        "type": "KustoQueryLanguage",
-        "typeProperties": {
-          "command": ".set-or-append Tabela_Alertas <|\nV2\n| where Tipo_de_Evento == \"Door Open\" and toint(Valor) == 1\n| join kind=leftsemi (\n    V2\n    | where Tipo_de_Evento == \"Speed\" and todouble(Valor) > 10\n) on Comboio, Carruagem, Datahora_Evento\n| extend Tipo_Alerta = \"PERIGO: Porta aberta com comboio em movimento\"\n| join kind=leftanti (\n    Tabela_Alertas\n    | where Tipo_Alerta == \"PERIGO: Porta aberta com comboio em movimento\"\n) on Comboio, Carruagem, Datahora_Evento",
-          "commandTimeout": "00:20:00"
-        },
-        "linkedService": {
-          "name": "Raw_Data_datalive",
-          "properties": {
-            "type": "KustoDatabase",
-            "typeProperties": {
-              "endpoint": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
-              "workspaceId": "00000000-0000-0000-0000-000000000000",
-              "database": "875b1d64-1a31-ae65-4893-fff353e0256f"
-            },
-            "annotations": []
-          },
-          "objectId": "75cc065b-0517-4855-8eca-1fa132957dbf"
-        },
-        "policy": {
-          "timeout": "0.12:00:00",
-          "retry": 0,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "KQLScript1",
-        "dependsOn": []
       }
     ]
   }

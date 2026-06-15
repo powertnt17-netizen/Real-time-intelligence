@@ -435,8 +435,9 @@
             "alias": "Tipo_de_Evento"
           },
           {
-            "type": "Rename",
+            "type": "Cast",
             "properties": {
+              "targetDataType": "Float",
               "column": {
                 "expressionType": "ColumnReference",
                 "node": null,
@@ -553,7 +554,7 @@
                   },
                   {
                     "name": "Valor",
-                    "type": "Float",
+                    "type": "BigInt",
                     "fields": null,
                     "items": null
                   }

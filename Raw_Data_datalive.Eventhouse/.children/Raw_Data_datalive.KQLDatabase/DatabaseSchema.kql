@@ -8,13 +8,33 @@
 .create-merge table Tabela_Desperdicio (Datahora_Evento:datetime, Comboio:string, Carruagem:string, Desperdicio:string) 
 .create-or-alter function with (skipvalidation = "true") Temperature_Irregular_Function() {
     V2
-    | where Tipo_de_Evento == "Temperature" and (todouble(Valor) < 20 or todouble(Valor) > 25)
-    | extend Tipo_Alerta = "Alerta: Temperatura fora do intervalo (20-25°C)"
+    | where Tipo_de_Evento == "Temperature" and todouble(Valor) > 30
+    | project 
+        Carruagem = tostring(Carruagem), 
+        Comboio = tostring(Comboio), 
+        Datahora_Evento = todatetime(Datahora_Evento), 
+        ID_Equipamento = tostring(ID_Equipamento), 
+        Latitude = todouble(Latitude), 
+        Longitude = todouble(Longitude), 
+        TipoEquipamento = tostring(TipoEquipamento), 
+        Tipo_de_Evento = tostring(Tipo_de_Evento), 
+        Valor = todouble(Valor), 
+        Tipo_Alerta = "Alerta: Temperatura Crítica Detetada!"
 }
 .create-or-alter function with (skipvalidation = "true") Humidity_Irregular_Function() {
     V2
     | where Tipo_de_Evento == "Humidity" and (todouble(Valor) < 20 or todouble(Valor) > 70)
-    | extend Tipo_Alerta = "Alerta: Humidade fora do intervalo (20-70%)"
+    | project 
+        Carruagem = tostring(Carruagem), 
+        Comboio = tostring(Comboio), 
+        Datahora_Evento = todatetime(Datahora_Evento), 
+        ID_Equipamento = tostring(ID_Equipamento), 
+        Latitude = todouble(Latitude), 
+        Longitude = todouble(Longitude), 
+        TipoEquipamento = tostring(TipoEquipamento), 
+        Tipo_de_Evento = tostring(Tipo_de_Evento), 
+        Valor = todouble(Valor), 
+        Tipo_Alerta = "Alerta: Humidade fora do intervalo (20-70%)"
 }
 .create-or-alter function with (skipvalidation = "true") fn_Detetar_Desperdicio() {
     let Gaveta_Janelas = Sliding_Window_5min 
@@ -29,5 +49,35 @@
     | extend Desperdicio = "Janela Aberta + AC Ligado"
     | project Datahora_Evento, Comboio, Carruagem, Desperdicio
 }
-.alter table Tabela_Alertas policy update "[{\"IsEnabled\":true,\"Source\":\"V2\",\"Query\":\"Temperature_Irregular_Function()\",\"IsTransactional\":false,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null,\"OwnerPrincipalDetails\":\"fa724e0f-9bfa-4eba-868c-30969f3fafb0;41bcb72d-c1e9-42e2-b451-eaded8635d70\"},{\"IsEnabled\":true,\"Source\":\"V2\",\"Query\":\"Humidity_Irregular_Function()\",\"IsTransactional\":false,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null,\"OwnerPrincipalDetails\":\"fa724e0f-9bfa-4eba-868c-30969f3fafb0;41bcb72d-c1e9-42e2-b451-eaded8635d70\"}]"
+.create-or-alter function with (skipvalidation = "true") Speed_Irregular_Function() {
+    V2
+    | where Tipo_de_Evento == "Speed" and todouble(Valor) > 120
+    | project 
+        Carruagem = tostring(Carruagem), 
+        Comboio = tostring(Comboio), 
+        Datahora_Evento = todatetime(Datahora_Evento), 
+        ID_Equipamento = tostring(ID_Equipamento), 
+        Latitude = todouble(Latitude), 
+        Longitude = todouble(Longitude), 
+        TipoEquipamento = tostring(TipoEquipamento), 
+        Tipo_de_Evento = tostring(Tipo_de_Evento), 
+        Valor = todouble(Valor), 
+        Tipo_Alerta = "Alerta: Excesso de Velocidade (> 120 km/h)"
+}
+.create-or-alter function with (skipvalidation = "true") Smoke_Irregular_Function() {
+    V2
+    | where Tipo_de_Evento == "Smoke Detector" and todouble(Valor) == 1
+    | project 
+        Carruagem = tostring(Carruagem), 
+        Comboio = tostring(Comboio), 
+        Datahora_Evento = todatetime(Datahora_Evento), 
+        ID_Equipamento = tostring(ID_Equipamento), 
+        Latitude = todouble(Latitude), 
+        Longitude = todouble(Longitude), 
+        TipoEquipamento = tostring(TipoEquipamento), 
+        Tipo_de_Evento = tostring(Tipo_de_Evento), 
+        Valor = todouble(Valor), 
+        Tipo_Alerta = "Alarme Crítico: Fumo Detetado na Carruagem!"
+}
+.alter table Tabela_Alertas policy update "[{\"IsEnabled\":true,\"Source\":\"V2\",\"Query\":\"Temperature_Irregular_Function()\",\"IsTransactional\":false,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null,\"OwnerPrincipalDetails\":\"fa724e0f-9bfa-4eba-868c-30969f3fafb0;41bcb72d-c1e9-42e2-b451-eaded8635d70\"},{\"IsEnabled\":true,\"Source\":\"V2\",\"Query\":\"Humidity_Irregular_Function()\",\"IsTransactional\":false,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null,\"OwnerPrincipalDetails\":\"fa724e0f-9bfa-4eba-868c-30969f3fafb0;41bcb72d-c1e9-42e2-b451-eaded8635d70\"},{\"IsEnabled\":true,\"Source\":\"V2\",\"Query\":\"Speed_Irregular_Function()\",\"IsTransactional\":false,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null,\"OwnerPrincipalDetails\":\"fa724e0f-9bfa-4eba-868c-30969f3fafb0;41bcb72d-c1e9-42e2-b451-eaded8635d70\"},{\"IsEnabled\":true,\"Source\":\"V2\",\"Query\":\"Smoke_Irregular_Function()\",\"IsTransactional\":false,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null,\"OwnerPrincipalDetails\":\"fa724e0f-9bfa-4eba-868c-30969f3fafb0;41bcb72d-c1e9-42e2-b451-eaded8635d70\"}]"
 .alter table Tabela_Desperdicio policy update "[{\"IsEnabled\":true,\"Source\":\"Sliding_Window_5min\",\"Query\":\"fn_Detetar_Desperdicio()\",\"IsTransactional\":false,\"PropagateIngestionProperties\":true,\"ManagedIdentity\":null,\"OwnerPrincipalDetails\":\"fa724e0f-9bfa-4eba-868c-30969f3fafb0;41bcb72d-c1e9-42e2-b451-eaded8635d70\"}]"

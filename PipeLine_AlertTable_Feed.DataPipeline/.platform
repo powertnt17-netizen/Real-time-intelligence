@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "PipeLine_AlertTable_Feed"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "3a2c0727-8ae3-87a3-4ce2-d17bcf188e38"
+  }
+}

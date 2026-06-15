@@ -3,13 +3,13 @@
     "version": "1.0.0",
     "dataSources": [
       {
-        "id": "08de9329-7809-415f-8559-bbf95ddf15a6",
+        "id": "d67161cc-5964-44f8-b98b-8228f0390694",
         "clusterUri": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
         "type": "Fabric",
         "databaseItemId": "Raw_Data_datalive"
       },
       {
-        "id": "1ae5376c-2343-48c2-9e93-736c4afe7a9c",
+        "id": "fb263ec3-123b-41c1-a7c9-38b19b822d55",
         "clusterUri": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
         "type": "Fabric",
         "databaseItemId": "Raw_Data_datalive"
@@ -20,19 +20,31 @@
         "id": "4e464cab-8b90-4be0-bae1-f7a0dd7a84c6",
         "content": ".alter table Tabela_Alertas policy update ```\n[\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Temperature_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  },\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Humidity_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  }\n]```",
         "title": "Tab",
-        "dataSourceId": "1ae5376c-2343-48c2-9e93-736c4afe7a9c"
+        "dataSourceId": "fb263ec3-123b-41c1-a7c9-38b19b822d55"
       },
       {
         "id": "830ffebb-d5e2-4e76-8f08-a29276c5801e",
         "content": "let Gaveta_Janelas = Sliding_Window_5min \n    | where Tipo_de_Evento == \"Window Open\" and todouble(Valor) > 0\n    | extend BlocoTempo = bin(todatetime(Datahora_Evento), 5m);\nlet Gaveta_AC = Sliding_Window_5min \n    | where Tipo_de_Evento == \"HVAC Status\" and todouble(Valor) > 0\n    | extend BlocoTempo = bin(todatetime(Datahora_Evento), 5m);\nGaveta_Janelas\n| join kind=inner (Gaveta_AC) on Comboio, Carruagem, BlocoTempo\n// Aqui aplicamos a limpeza mágica para remover as duplicações:\n| distinct Datahora_Evento = BlocoTempo, Comboio, Carruagem\n| extend Desperdicio = \"Janela Aberta + AC Ligado\"\n| order by Datahora_Evento desc",
         "title": "",
-        "dataSourceId": "1ae5376c-2343-48c2-9e93-736c4afe7a9c"
+        "dataSourceId": "fb263ec3-123b-41c1-a7c9-38b19b822d55"
       },
       {
         "id": "42d30281-869b-4457-ad4d-adf738af5b97",
         "content": "V2\n| where Tipo_de_Evento == \"Smoke Detector\"",
         "title": "",
-        "dataSourceId": "1ae5376c-2343-48c2-9e93-736c4afe7a9c"
+        "dataSourceId": "fb263ec3-123b-41c1-a7c9-38b19b822d55"
+      },
+      {
+        "id": "e0b44c42-e9cd-4c99-a69c-b26bb51cedb6",
+        "content": "// 5. Ativar as Update Policies em Simultâneo\n.alter table Tabela_Alertas policy update ```\n[\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Temperature_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  },\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Humidity_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  },\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Speed_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  },\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Smoke_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  }\n]\n```",
+        "title": "",
+        "dataSourceId": "fb263ec3-123b-41c1-a7c9-38b19b822d55"
+      },
+      {
+        "id": "85c37e95-5ffc-4f85-b378-bf729e2dcbe5",
+        "content": "Tabela_Alertas\n| order by IngestionTime desc\n| take 10",
+        "title": "",
+        "dataSourceId": "fb263ec3-123b-41c1-a7c9-38b19b822d55"
       }
     ]
   }

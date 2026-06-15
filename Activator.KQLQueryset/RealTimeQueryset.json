@@ -45,6 +45,48 @@
         "content": "V2\n| where todatetime(Datahora_Evento) >= ago(1m)\n// Agrupamos ao segundo exato para garantir que a leitura física é simultânea\n| summarize \n    Velocidade = maxif(todouble(Valor), Tipo_de_Evento == \"Speed\"), \n    Pressao_Travoes = maxif(todouble(Valor), Tipo_de_Evento == \"Brake Pressure\") \n    by Comboio, Carruagem, Janela_Tempo = bin(todatetime(Datahora_Evento), 1s)\n// A verdadeira anomalia (Brake Drag): Andar a mais de 20 km/h com travões a fundo (> 3.5 Bar)\n| where Velocidade > 20 and Pressao_Travoes > 3.5",
         "title": "Stuck_ Brake",
         "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "d852042a-954c-460c-bfb2-f79e33c7fc51",
+        "content": "V2\n| where todatetime(Datahora_Evento) >= ago(1m)\n| where Tipo_de_Evento in (\"Operation Mode\", \"Speed\")\n// Juntamos as duas leituras do mesmo segundo (substitui a necessidade do leftsemi)\n| summarize \n    Modo_Operacao = maxif(toint(Valor), Tipo_de_Evento == \"Operation Mode\"),\n    Velocidade = maxif(todouble(Valor), Tipo_de_Evento == \"Speed\")\n    by Comboio, Carruagem, Janela_Tempo = bin(todatetime(Datahora_Evento), 1s)\n// O Data Activator vai disparar se apanhar isto:\n| where Modo_Operacao == 0 and Velocidade > 50",
+        "title": "Manual Speed Limit",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "bf5e3a1d-8a9b-4ffc-b989-f2f77f41b60a",
+        "content": "V2\n// 1. FILTRO DE PERFORMANCE: Ler apenas os últimos 2 minutos\n| where todatetime(Datahora_Evento) >= ago(2m) \n| where Tipo_de_Evento == \"Temperature\"\n| extend NumericValue = todouble(Valor)\n| where NumericValue < 20 or NumericValue > 25\n// 2. AGRUPAR DENTRO DO MINUTO ATUAL\n| summarize \n    MaxValue = max(NumericValue),\n    TotalOccurrences_ThisMinute = count()\n    by ID_Equipamento, Carruagem, Comboio, TimeWindow = bin(todatetime(Datahora_Evento), 1m)\n// O Activator vai ler esta linha: tem o comboio, o valor máximo atingido e quantos \"picos\" deu neste minuto.",
+        "title": "Temp error V2 ",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "a14f57bc-c7f1-45c3-8040-5aa604800088",
+        "content": "V2\n// 1. FILTRO DE PERFORMANCE: Ler apenas os últimos 2 minutos\n| where todatetime(Datahora_Evento) >= ago(2m) \n| where Tipo_de_Evento == \"Humidity\"\n| extend NumericValue = todouble(Valor)\n// Valores de humidade fora do intervalo normal (abaixo de 20% ou acima de 70%)\n| where NumericValue < 20 or NumericValue > 70\n// 2. AGRUPAR DENTRO DO MINUTO ATUAL\n| summarize \n    MaxValue = max(NumericValue),\n    TotalOccurrences_ThisMinute = count()\n    by ID_Equipamento, Carruagem, Comboio, TimeWindow = bin(todatetime(Datahora_Evento), 1m)",
+        "title": "HumidityV2",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "fec04607-0209-4e29-9922-c5fbfb99d7d6",
+        "content": "V2\n// 1. FILTRO DE PERFORMANCE: Ler apenas os últimos 2 minutos (Cobre atrasos de rede)\n| where todatetime(Datahora_Evento) >= ago(2m) \n| where Tipo_de_Evento == \"Smoke Detector\"\n| extend NumericValue = todouble(Valor)\n// 2. CONDIÇÃO CRÍTICA: Fumo detetado\n| where NumericValue == 1\n// 3. AGRUPAMENTO (O teu primeiro nível de Anti-Spam)\n| summarize \n    MaxValue = max(NumericValue), // Será sempre 1, mas mantém a estrutura padrão\n    TotalOccurrences_ThisMinute = count()\n    by ID_Equipamento, Carruagem, Comboio, TimeWindow = bin(todatetime(Datahora_Evento), 1m)",
+        "title": "Smoke_DetectorV2",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "e3c9ed24-dbbe-44cc-a607-5218720fb530",
+        "content": "V2\n// 1. FILTRO DE PERFORMANCE: Ler apenas os últimos 2 minutos\n| where todatetime(Datahora_Evento) >= ago(2m) \n| where Tipo_de_Evento == \"Speed\"\n| extend NumericValue = todouble(Valor)\n// 2. CONDIÇÃO CRÍTICA: Excesso de velocidade\n| where NumericValue > 120\n// 3. AGRUPAMENTO (Primeira barreira Anti-Spam)\n| summarize \n    MaxValue = max(NumericValue), // Apanha a velocidade máxima atingida naquele minuto (ex: 135 km/h)\n    TotalOccurrences_ThisMinute = count()\n    by ID_Equipamento, Carruagem, Comboio, TimeWindow = bin(todatetime(Datahora_Evento), 1m)",
+        "title": "Speed Limit V2",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "12dbeea7-b736-4786-94bb-5840147d4e36",
+        "content": "V2\n// 1. FILTRO DE PERFORMANCE: Ler últimos 2 minutos e apenas as variáveis necessárias\n| where todatetime(Datahora_Evento) >= ago(2m)\n| where Tipo_de_Evento in (\"Speed\", \"Brake Pressure\")\n// 2. AGRUPAMENTO AO SEGUNDO: Cruzar a leitura exata (Sem ID_Equipamento!)\n| summarize \n    Velocidade = maxif(todouble(Valor), Tipo_de_Evento == \"Speed\"), \n    Pressao_Travoes = maxif(todouble(Valor), Tipo_de_Evento == \"Brake Pressure\") \n    by Comboio, Carruagem, SegundoExato = bin(todatetime(Datahora_Evento), 1s)\n// 3. CONDIÇÃO CRÍTICA: Andar rápido com os travões a fundo\n| where Velocidade > 20 and Pressao_Travoes > 3.5\n// 4. AGRUPAMENTO AO MINUTO: A barreira Anti-Spam para o Data Activator\n| summarize\n    MaxVelocidade = max(Velocidade),\n    MaxPressao = max(Pressao_Travoes),\n    Segundos_em_Falha_Neste_Minuto = count()\n    by Comboio, Carruagem, TimeWindow = bin(SegundoExato, 1m)",
+        "title": "StuckBrake V2",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "94701b3d-b3ab-4f34-9104-8d9e53ea7718",
+        "content": "V2\n// 1. FILTRO DE PERFORMANCE: Ler os últimos 2 minutos\n| where todatetime(Datahora_Evento) >= ago(2m)\n| where Tipo_de_Evento in (\"Door Open\", \"Speed\")\n// 2. AGRUPAMENTO AO SEGUNDO: Resolve o problema dos milissegundos (substitui o join)\n| summarize \n    Estado_Porta = maxif(toint(Valor), Tipo_de_Evento == \"Door Open\"),\n    Velocidade = maxif(todouble(Valor), Tipo_de_Evento == \"Speed\")\n    by Comboio, Carruagem, SegundoExato = bin(todatetime(Datahora_Evento), 1s)\n// 3. CONDIÇÃO CRÍTICA: Porta aberta (1) a mais de 10 km/h\n| where Estado_Porta == 1 and Velocidade > 10\n// 4. AGRUPAMENTO AO MINUTO: A barreira Anti-Spam para o Data Activator\n| summarize \n    MaxVelocidade = max(Velocidade),\n    Segundos_em_Perigo_Neste_Minuto = count()\n    by Comboio, Carruagem, TimeWindow = bin(SegundoExato, 1m)",
+        "title": "Door Movement V4",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
       }
     ]
   }
