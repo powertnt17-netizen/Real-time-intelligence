@@ -3,13 +3,13 @@
     "version": "1.0.0",
     "dataSources": [
       {
-        "id": "d67161cc-5964-44f8-b98b-8228f0390694",
+        "id": "ff19c5b6-6f9c-4b27-bdcc-29bf0298c1e6",
         "clusterUri": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
         "type": "Fabric",
         "databaseItemId": "Raw_Data_datalive"
       },
       {
-        "id": "fb263ec3-123b-41c1-a7c9-38b19b822d55",
+        "id": "afe814ed-d34e-489a-82b8-3d2848211fb6",
         "clusterUri": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
         "type": "Fabric",
         "databaseItemId": "Raw_Data_datalive"
@@ -20,31 +20,37 @@
         "id": "4e464cab-8b90-4be0-bae1-f7a0dd7a84c6",
         "content": ".alter table Tabela_Alertas policy update ```\n[\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Temperature_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  },\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Humidity_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  }\n]```",
         "title": "Tab",
-        "dataSourceId": "fb263ec3-123b-41c1-a7c9-38b19b822d55"
+        "dataSourceId": "afe814ed-d34e-489a-82b8-3d2848211fb6"
       },
       {
         "id": "830ffebb-d5e2-4e76-8f08-a29276c5801e",
         "content": "let Gaveta_Janelas = Sliding_Window_5min \n    | where Tipo_de_Evento == \"Window Open\" and todouble(Valor) > 0\n    | extend BlocoTempo = bin(todatetime(Datahora_Evento), 5m);\nlet Gaveta_AC = Sliding_Window_5min \n    | where Tipo_de_Evento == \"HVAC Status\" and todouble(Valor) > 0\n    | extend BlocoTempo = bin(todatetime(Datahora_Evento), 5m);\nGaveta_Janelas\n| join kind=inner (Gaveta_AC) on Comboio, Carruagem, BlocoTempo\n// Aqui aplicamos a limpeza mágica para remover as duplicações:\n| distinct Datahora_Evento = BlocoTempo, Comboio, Carruagem\n| extend Desperdicio = \"Janela Aberta + AC Ligado\"\n| order by Datahora_Evento desc",
         "title": "",
-        "dataSourceId": "fb263ec3-123b-41c1-a7c9-38b19b822d55"
+        "dataSourceId": "afe814ed-d34e-489a-82b8-3d2848211fb6"
       },
       {
         "id": "42d30281-869b-4457-ad4d-adf738af5b97",
-        "content": "V2\n| where Tipo_de_Evento == \"Smoke Detector\"",
+        "content": "V2\n| where Tipo_de_Evento == \"Engine Temperature\" and Comboio == \"1\"",
         "title": "",
-        "dataSourceId": "fb263ec3-123b-41c1-a7c9-38b19b822d55"
+        "dataSourceId": "afe814ed-d34e-489a-82b8-3d2848211fb6"
       },
       {
         "id": "e0b44c42-e9cd-4c99-a69c-b26bb51cedb6",
         "content": "// 5. Ativar as Update Policies em Simultâneo\n.alter table Tabela_Alertas policy update ```\n[\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Temperature_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  },\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Humidity_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  },\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Speed_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  },\n  {\n    \"IsEnabled\": true,\n    \"Source\": \"V2\",\n    \"Query\": \"Smoke_Irregular_Function()\",\n    \"IsTransactional\": false,\n    \"PropagateIngestionProperties\": true\n  }\n]\n```",
         "title": "",
-        "dataSourceId": "fb263ec3-123b-41c1-a7c9-38b19b822d55"
+        "dataSourceId": "afe814ed-d34e-489a-82b8-3d2848211fb6"
       },
       {
         "id": "85c37e95-5ffc-4f85-b378-bf729e2dcbe5",
         "content": "Tabela_Alertas\n| order by IngestionTime desc\n| take 10",
         "title": "",
-        "dataSourceId": "fb263ec3-123b-41c1-a7c9-38b19b822d55"
+        "dataSourceId": "afe814ed-d34e-489a-82b8-3d2848211fb6"
+      },
+      {
+        "id": "53fd1377-38b8-4770-93d9-3a0b3de07cda",
+        "content": "V2\n| where Comboio == \"10\"\n| where Tipo_de_Evento == \"Humidity\"\n| extend Valor_Humidade = todouble(Valor) // Converte para número para facilitar a leitura\n| project \n    Datahora_Evento = todatetime(Datahora_Evento), \n    Comboio, \n    Carruagem, \n    ID_Equipamento, \n    Valor_Humidade\n| order by Datahora_Evento desc\n| take 100 // Mostra as últimas 100 leituras",
+        "title": "",
+        "dataSourceId": "afe814ed-d34e-489a-82b8-3d2848211fb6"
       }
     ]
   }

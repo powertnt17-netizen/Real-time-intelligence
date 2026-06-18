@@ -87,6 +87,24 @@
         "content": "V2\n// 1. FILTRO DE PERFORMANCE: Ler os últimos 2 minutos\n| where todatetime(Datahora_Evento) >= ago(2m)\n| where Tipo_de_Evento in (\"Door Open\", \"Speed\")\n// 2. AGRUPAMENTO AO SEGUNDO: Resolve o problema dos milissegundos (substitui o join)\n| summarize \n    Estado_Porta = maxif(toint(Valor), Tipo_de_Evento == \"Door Open\"),\n    Velocidade = maxif(todouble(Valor), Tipo_de_Evento == \"Speed\")\n    by Comboio, Carruagem, SegundoExato = bin(todatetime(Datahora_Evento), 1s)\n// 3. CONDIÇÃO CRÍTICA: Porta aberta (1) a mais de 10 km/h\n| where Estado_Porta == 1 and Velocidade > 10\n// 4. AGRUPAMENTO AO MINUTO: A barreira Anti-Spam para o Data Activator\n| summarize \n    MaxVelocidade = max(Velocidade),\n    Segundos_em_Perigo_Neste_Minuto = count()\n    by Comboio, Carruagem, TimeWindow = bin(SegundoExato, 1m)",
         "title": "Door Movement V4",
         "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "c914be25-1e75-41b7-b52b-7e70ba8d9b01",
+        "content": "V2\n// 1. FILTRO DE PERFORMANCE: Exatamente 1 minuto (Sem sobreposições!)\n// Lê tudo a partir de há 1 minuto atrás, até ao segundo atual (agora)\n| where todatetime(Datahora_Evento) >= ago(1m) and todatetime(Datahora_Evento) < now()\n| where Tipo_de_Evento in (\"Door Open\", \"Speed\")\n// 2. AGRUPAMENTO AO SEGUNDO\n| summarize \n    Estado_Porta = maxif(todouble(Valor), Tipo_de_Evento == \"Door Open\"),\n    Velocidade = maxif(todouble(Valor), Tipo_de_Evento == \"Speed\")\n    by Comboio, Carruagem, SegundoExato = bin(todatetime(Datahora_Evento), 1s)\n// 3. CONDIÇÃO CRÍTICA\n| where Estado_Porta == 1 and Velocidade > 10\n// 4. AGRUPAMENTO FINAL (Já não precisas do TimeWindow porque a query já isolou o minuto)\n| summarize \n    MaxVelocidade = max(Velocidade),\n    Segundos_em_Perigo_Neste_Minuto = count()\n    by Comboio, Carruagem",
+        "title": "Door Movement V5",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "ef258819-8cc2-435d-afed-0477b707cf57",
+        "content": "V2\n// 1. FILTRO DE PERFORMANCE: Exatamente 1 minuto (Sem sobreposições!)\n// Lê tudo a partir de há 1 minuto atrás, até ao segundo atual\n| where todatetime(Datahora_Evento) >= ago(1m) and todatetime(Datahora_Evento) < now()\n| where Tipo_de_Evento in (\"Speed\", \"Brake Pressure\")\n// 2. AGRUPAMENTO AO SEGUNDO: Cruzar a leitura exata (Sem ID_Equipamento!)\n| summarize \n    Velocidade = maxif(todouble(Valor), Tipo_de_Evento == \"Speed\"), \n    Pressao_Travoes = maxif(todouble(Valor), Tipo_de_Evento == \"Brake Pressure\") \n    by Comboio, Carruagem, SegundoExato = bin(todatetime(Datahora_Evento), 1s)\n// 3. CONDIÇÃO CRÍTICA: Andar rápido com os travões a fundo\n| where Velocidade > 20 and Pressao_Travoes > 3.5\n// 4. AGRUPAMENTO FINAL (Já não precisas do TimeWindow porque a query já isolou o minuto)\n| summarize\n    MaxVelocidade = max(Velocidade),\n    MaxPressao = max(Pressao_Travoes),\n    Segundos_em_Falha_Neste_Minuto = count()\n    by Comboio, Carruagem",
+        "title": "Stuck Brake V3",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
+      },
+      {
+        "id": "dcdb8e53-3baf-4c64-b0af-4dfa631bd05b",
+        "content": "V2\n// 1. PERFORMANCE FILTER: Strict 1-minute tumbling window (Anti-Spam)\n| where todatetime(Datahora_Evento) >= ago(1m) and todatetime(Datahora_Evento) < now()\n| where Tipo_de_Evento in (\"Engine State\", \"Engine Temperature\")\n// 2. AGGREGATION PER SECOND: Merge the Digital Twin readings at the exact second\n| summarize \n    Engine_State_Value = maxif(todouble(Valor), Tipo_de_Evento == \"Engine State\"),\n    Engine_Temp_Value = maxif(todouble(Valor), Tipo_de_Evento == \"Engine Temperature\")\n    by Comboio, Carruagem, ExactSecond = bin(todatetime(Datahora_Evento), 1s)\n// 3. CRITICAL CONDITION: Engine is running (1) AND temperature is over the threshold (> 95ºC)\n| where Engine_State_Value == 1 and Engine_Temp_Value > 95\n// 4. FINAL AGGREGATION: Summary for the Maintenance Alert Email\n| summarize \n    Max_Reached_Temperature = max(Engine_Temp_Value),\n    Seconds_In_Overheat = count()\n    by Comboio, Carruagem",
+        "title": "Eng Temp V1",
+        "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
       }
     ]
   }

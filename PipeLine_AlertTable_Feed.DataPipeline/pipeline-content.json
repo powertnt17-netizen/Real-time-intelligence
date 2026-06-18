@@ -65,6 +65,42 @@
         },
         "name": "Door_Movement",
         "dependsOn": []
+      },
+      {
+        "type": "KustoQueryLanguage",
+        "typeProperties": {
+          "command": ".set-or-append Tabela_Alertas <|\n// 1. Filtrar apenas os últimos 2 minutos\nlet Janela_Recente = V2 | where todatetime(Datahora_Evento) >= ago(2m);\n//\n// 2. Encontrar os \"segundos de perigo\" (Motor ON + Temp > 95)\nlet Segundos_Perigo = Janela_Recente\n    | where Tipo_de_Evento in (\"Engine State\", \"Engine Temperature\")\n    | summarize \n        Estado_Motor = maxif(todouble(Valor), Tipo_de_Evento == \"Engine State\"),\n        Temp_Motor = maxif(todouble(Valor), Tipo_de_Evento == \"Engine Temperature\")\n        by Comboio, Carruagem, SegundoExato = bin(todatetime(Datahora_Evento), 1s)\n    | where Estado_Motor == 1 and Temp_Motor > 95;\n//\n// 3. Recuperar os detalhes do sensor usando a Temperatura como âncora\nJanela_Recente\n| where Tipo_de_Evento == \"Engine Temperature\" and todouble(Valor) > 95\n| extend SegundoExato = bin(todatetime(Datahora_Evento), 1s)\n| join kind=inner (Segundos_Perigo) on Comboio, Carruagem, SegundoExato\n//\n// 4. Formatar para a Tabela_Alertas (Em Inglês para a tese)\n| extend Tipo_Alerta = \"CRITICAL: Engine Overheat (>95ºC)\"\n| project \n    Carruagem = tostring(Carruagem), \n    Comboio = tostring(Comboio), \n    Datahora_Evento = todatetime(Datahora_Evento), \n    ID_Equipamento = tostring(ID_Equipamento), \n    Latitude = todouble(Latitude), \n    Longitude = todouble(Longitude), \n    TipoEquipamento = tostring(TipoEquipamento), \n    Tipo_de_Evento = tostring(Tipo_de_Evento), \n    Valor = todouble(Valor), \n    Tipo_Alerta\n//\n// 5. O Bloqueio Anti-Duplicados\n| join kind=leftanti (\n    Tabela_Alertas\n    | where todatetime(Datahora_Evento) >= ago(3m)\n    | where Tipo_Alerta == \"CRITICAL: Engine Overheat (>95ºC)\"\n) on Comboio, Carruagem, Datahora_Evento",
+          "commandTimeout": "00:20:00"
+        },
+        "linkedService": {
+          "name": "Raw_Data_datalive",
+          "properties": {
+            "type": "KustoDatabase",
+            "typeProperties": {
+              "endpoint": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
+              "workspaceId": "00000000-0000-0000-0000-000000000000",
+              "database": "875b1d64-1a31-ae65-4893-fff353e0256f"
+            },
+            "annotations": []
+          },
+          "objectId": "75cc065b-0517-4855-8eca-1fa132957dbf"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Engine Temperature",
+        "dependsOn": [
+          {
+            "activity": "Script Stuck Brake - Alert Table Feed",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
       }
     ]
   }

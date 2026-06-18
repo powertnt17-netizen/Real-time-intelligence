@@ -26,16 +26,15 @@ from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 from delta.tables import DeltaTable
 
-# --- 0. LIMPEZA AUTOMÁTICA DO CHECKPOINT (MODO DESENVOLVIMENTO) ---
-# Dica para Produção: Quando a tese for apresentada, podes comentar o 'mssparkutils.fs.rm' 
-# para que o checkpoint guarde efetivamente a memória entre execuções do Pipeline.
+# --- 0. CONFIGURAÇÃO DO CHECKPOINT (PRODUÇÃO / PIPELINE) ---
+# Comentado para que o checkpoint guarde efetivamente a memória entre execuções do Pipeline.
 checkpoint_path = "Files/checkpoints/train_fleet_dev"
 
-try:
-    mssparkutils.fs.rm(checkpoint_path, True)
-    print("Memória do Checkpoint limpa. A iniciar leitura do zero...")
-except Exception as e:
-    print("Nenhum checkpoint anterior encontrado.")
+# try:
+#     mssparkutils.fs.rm(checkpoint_path, True)
+#     print("Memória do Checkpoint limpa. A iniciar leitura do zero...")
+# except Exception as e:
+#     print("Nenhum checkpoint anterior encontrado.")
 # ------------------------------------------------------------------
 
 # 1. LER DA TABELA BRUTA
@@ -57,13 +56,13 @@ def process_batch(batch_df, batch_id):
     # --- A NOVA COLUNA DA CHAVE COMPOSTA ---
     enriched_df = enriched_df.withColumn("Chave_Ativo", F.concat_ws("-", F.col("Comboio"), F.col("Carruagem")))
     
-    # 4. ESCREVER NA TABELA (MERGE PARA EVITAR DUPLICADOS)
+    # 4. ESCREVER NA TABELA (MERGE CORRIGIDO PELO TIMESTAMP)
     try:
         dt = DeltaTable.forName(spark, "dbo.tabela_variaveis_lentas_filtrada")
         
         dt.alias("target").merge(
             enriched_df.alias("source"),
-            "target.Comboio = source.Comboio AND target.Carruagem = source.Carruagem AND target.ID_Equipamento = source.ID_Equipamento AND target.Valor = source.Valor"
+            "target.Comboio = source.Comboio AND target.Carruagem = source.Carruagem AND target.ID_Equipamento = source.ID_Equipamento AND target.Datahora_Evento = source.Datahora_Evento"
         ).whenNotMatchedInsertAll().execute()
         
     except Exception as e:
