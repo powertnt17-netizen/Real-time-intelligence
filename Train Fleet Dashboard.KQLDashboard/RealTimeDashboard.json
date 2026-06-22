@@ -15,7 +15,7 @@
       "layout": {
         "x": 0,
         "y": 0,
-        "width": 8,
+        "width": 9,
         "height": 8
       },
       "queryRef": {
@@ -64,10 +64,10 @@
       "visualType": "table",
       "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
       "layout": {
-        "x": 8,
+        "x": 9,
         "y": 0,
-        "width": 16,
-        "height": 8
+        "width": 15,
+        "height": 10
       },
       "queryRef": {
         "kind": "query",
@@ -112,10 +112,10 @@
       "visualType": "map",
       "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
       "layout": {
-        "x": 8,
-        "y": 8,
-        "width": 16,
-        "height": 9
+        "x": 9,
+        "y": 10,
+        "width": 15,
+        "height": 16
       },
       "queryRef": {
         "kind": "query",
@@ -208,7 +208,7 @@
       "layout": {
         "x": 0,
         "y": 9,
-        "width": 7,
+        "width": 6,
         "height": 14
       },
       "queryRef": {
@@ -232,9 +232,9 @@
       "visualType": "card",
       "pageId": "41b027f7-f914-4106-bbe1-f888c7bcd664",
       "layout": {
-        "x": 7,
+        "x": 6,
         "y": 9,
-        "width": 4,
+        "width": 5,
         "height": 4
       },
       "queryRef": {
@@ -264,7 +264,7 @@
         "queryId": "5d80b8d3-c233-4b80-abc6-4251b58d53fb"
       },
       "visualOptions": {
-        "multiStat__textSize": "auto",
+        "multiStat__textSize": "large",
         "multiStat__valueColumn": null,
         "colorRulesDisabled": false,
         "colorRules": []
@@ -279,7 +279,7 @@
         "x": 0,
         "y": 0,
         "width": 24,
-        "height": 22
+        "height": 26
       },
       "queryRef": {
         "kind": "query",
@@ -301,9 +301,9 @@
       "visualType": "card",
       "pageId": "41b027f7-f914-4106-bbe1-f888c7bcd664",
       "layout": {
-        "x": 7,
+        "x": 6,
         "y": 13,
-        "width": 4,
+        "width": 5,
         "height": 4
       },
       "queryRef": {
@@ -319,13 +319,13 @@
     },
     {
       "id": "7d973733-d211-445a-9fba-8b6ec2bcccdf",
-      "title": "Max Temp today",
+      "title": "Max Temperature",
       "visualType": "card",
       "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
       "layout": {
         "x": 0,
-        "y": 0,
-        "width": 5,
+        "y": 8,
+        "width": 6,
         "height": 3
       },
       "queryRef": {
@@ -341,13 +341,13 @@
     },
     {
       "id": "6383a0c7-8105-4f0b-954f-ab8f1110a6f6",
-      "title": "Fleet Temp & Humidity",
+      "title": "Average Fleet Temp & Humidity",
       "visualType": "line",
       "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
       "layout": {
-        "x": 5,
+        "x": 0,
         "y": 0,
-        "width": 19,
+        "width": 24,
         "height": 8
       },
       "queryRef": {
@@ -390,9 +390,9 @@
       "visualType": "card",
       "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
       "layout": {
-        "x": 0,
-        "y": 6,
-        "width": 5,
+        "x": 12,
+        "y": 8,
+        "width": 6,
         "height": 3
       },
       "queryRef": {
@@ -408,13 +408,13 @@
     },
     {
       "id": "f454742b-19d7-4cd1-883c-eb0248bbf8fd",
-      "title": "Min Temp Today",
+      "title": "Min Temperature",
       "visualType": "card",
       "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
       "layout": {
-        "x": 0,
-        "y": 3,
-        "width": 5,
+        "x": 6,
+        "y": 8,
+        "width": 6,
         "height": 3
       },
       "queryRef": {
@@ -434,9 +434,9 @@
       "visualType": "card",
       "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
       "layout": {
-        "x": 0,
-        "y": 9,
-        "width": 5,
+        "x": 18,
+        "y": 8,
+        "width": 6,
         "height": 3
       },
       "queryRef": {
@@ -456,10 +456,10 @@
       "visualType": "table",
       "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
       "layout": {
-        "x": 5,
-        "y": 8,
-        "width": 19,
-        "height": 14
+        "x": 11,
+        "y": 11,
+        "width": 13,
+        "height": 15
       },
       "queryRef": {
         "kind": "query",
@@ -474,6 +474,430 @@
         "drillthrough": [],
         "table__renderLinks": [],
         "colorRules": []
+      }
+    },
+    {
+      "id": "e616ce57-eef1-4a26-9429-5edb62794066",
+      "title": "Alert Distribution",
+      "visualType": "pie",
+      "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
+      "layout": {
+        "x": 0,
+        "y": 17,
+        "width": 9,
+        "height": 9
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "f3b08bea-c6c3-46c6-a457-afae50e0ea62"
+      },
+      "visualOptions": {
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "labelDisabled": false,
+        "pie__label": [
+          "name",
+          "percentage"
+        ],
+        "tooltipDisabled": false,
+        "pie__tooltip": [
+          "name",
+          "percentage",
+          "value"
+        ],
+        "pie__orderBy": "size",
+        "pie__kind": "pie",
+        "pie__topNSlices": null,
+        "seriesColors": {},
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "30ccba15-095e-416a-9158-dcf2ea46ae8f",
+      "title": "Alert Door in Movement Seconds",
+      "visualType": "card",
+      "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
+      "layout": {
+        "x": 3,
+        "y": 11,
+        "width": 3,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "b85f0afb-3873-412a-b915-b07ec3bc4cf9"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "large",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": true,
+        "colorRules": [
+          {
+            "id": "cb7c3848-f387-49f2-9c8c-b40fbcdd0029",
+            "ruleType": "colorByCondition",
+            "applyToColumn": null,
+            "hideText": false,
+            "applyTo": "cells",
+            "conditions": [
+              {
+                "column": null,
+                "operator": ">",
+                "values": [
+                  ""
+                ]
+              }
+            ],
+            "chainingOperator": "and",
+            "colorStyle": "bold",
+            "color": null,
+            "tag": "",
+            "icon": null,
+            "ruleName": "",
+            "visualType": "card"
+          }
+        ]
+      }
+    },
+    {
+      "id": "f29bf863-4cc4-4c3f-a5c3-fa6ef69c4ddc",
+      "title": "Locked Brake",
+      "visualType": "card",
+      "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
+      "layout": {
+        "x": 6,
+        "y": 8,
+        "width": 3,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "1657de56-052d-456e-b069-b2624284f6cd"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "large",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": []
+      }
+    },
+    {
+      "id": "5971f10e-b034-4db0-9ee1-2dcff0eff53e",
+      "title": "Engine Temperature",
+      "visualType": "card",
+      "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
+      "layout": {
+        "x": 6,
+        "y": 11,
+        "width": 3,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "1bd784f7-d70a-4fc4-b261-2bfae702356f"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "large",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": []
+      }
+    },
+    {
+      "id": "04306ca8-ee3b-48ec-9a30-53ad700ef7cc",
+      "title": "Smoke Alert",
+      "visualType": "card",
+      "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
+      "layout": {
+        "x": 0,
+        "y": 14,
+        "width": 3,
+        "height": 3
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "440a77da-b347-4469-8fa8-64d3a4382bae"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "large",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": true,
+        "colorRules": []
+      }
+    },
+    {
+      "id": "a93d1b89-0e96-4a4c-bd3b-2443b4909b13",
+      "title": "Average Temperature by Train",
+      "visualType": "line",
+      "pageId": "82cb7ca8-50eb-44bb-bdfb-ac009d1e2f19",
+      "layout": {
+        "x": 0,
+        "y": 11,
+        "width": 11,
+        "height": 15
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "8834edb3-58bc-41e6-81f6-baf13ee2894c"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [],
+          "showMultiplePanels": false
+        },
+        "seriesColors": {},
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "",
+        "xColumn": null,
+        "yColumns": null,
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "forceAxisTicks": false,
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "2c4d9e8a-c787-4cb2-9176-827e514fc83e",
+      "title": "Average Speed (km/h)",
+      "visualType": "card",
+      "pageId": "41b027f7-f914-4106-bbe1-f888c7bcd664",
+      "layout": {
+        "x": 11,
+        "y": 0,
+        "width": 5,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "8bd7a189-da1e-41cc-9c57-72d5c938e2cd"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "auto",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": [
+          {
+            "id": "bb416ca3-9155-4ddd-a313-2d61f2c95fa7",
+            "ruleType": "colorByCondition",
+            "applyToColumn": null,
+            "hideText": false,
+            "applyTo": "cells",
+            "conditions": [
+              {
+                "operator": ">",
+                "column": "Velocidade_Media",
+                "values": [
+                  "100"
+                ]
+              }
+            ],
+            "chainingOperator": "and",
+            "colorStyle": "bold",
+            "color": "red",
+            "tag": "",
+            "icon": "warning",
+            "ruleName": "",
+            "visualType": "card"
+          },
+          {
+            "id": "576e0d3b-6980-454e-a6d6-d0dfc30edb81",
+            "ruleType": "colorByCondition",
+            "applyToColumn": null,
+            "hideText": false,
+            "applyTo": "cells",
+            "conditions": [
+              {
+                "operator": "<",
+                "column": "Velocidade_Media",
+                "values": [
+                  "100"
+                ]
+              }
+            ],
+            "chainingOperator": "and",
+            "colorStyle": "bold",
+            "color": "green",
+            "tag": "",
+            "icon": "completed",
+            "ruleName": "",
+            "visualType": "card"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2f35233c-67f2-411b-a1ca-b6abe7cdace3",
+      "title": "Over limit Speed",
+      "visualType": "table",
+      "pageId": "41b027f7-f914-4106-bbe1-f888c7bcd664",
+      "layout": {
+        "x": 16,
+        "y": 0,
+        "width": 8,
+        "height": 6
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "b148e3a2-750c-423b-a809-a4c951ff8efa"
+      },
+      "visualOptions": {
+        "table__enableRenderLinks": true,
+        "colorRulesDisabled": true,
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "crossFilter": [],
+        "drillthrough": [],
+        "table__renderLinks": [],
+        "colorRules": []
+      }
+    },
+    {
+      "id": "e7e9340e-260a-4e26-9dd0-6ffbcee478c3",
+      "title": "Brake and Speed correlation",
+      "description": "Filter by 1 train",
+      "visualType": "line",
+      "pageId": "41b027f7-f914-4106-bbe1-f888c7bcd664",
+      "layout": {
+        "x": 11,
+        "y": 6,
+        "width": 13,
+        "height": 11
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "05a95f98-d592-4a87-ae23-9f456345494b"
+      },
+      "visualOptions": {
+        "multipleYAxes": {
+          "base": {
+            "id": "-1",
+            "label": "Brake Pressuer",
+            "columns": [],
+            "yAxisMaximumValue": null,
+            "yAxisMinimumValue": null,
+            "yAxisScale": "linear",
+            "horizontalLines": []
+          },
+          "additional": [
+            {
+              "id": "38e6ad0e-9ca7-4071-8f4d-44c0c770add4",
+              "columns": [
+                "Velocidade"
+              ],
+              "label": "Speed",
+              "yAxisMaximumValue": null,
+              "yAxisMinimumValue": null,
+              "yAxisScale": "linear",
+              "horizontalLines": []
+            }
+          ],
+          "showMultiplePanels": false
+        },
+        "seriesColors": {},
+        "hideLegend": false,
+        "legendLocation": "bottom",
+        "xColumnTitle": "Calendar",
+        "xColumn": null,
+        "yColumns": [
+          "Velocidade",
+          "Pressao_Travao"
+        ],
+        "seriesColumns": null,
+        "xAxisScale": "linear",
+        "verticalLine": "",
+        "crossFilterDisabled": false,
+        "drillthroughDisabled": false,
+        "forceAxisTicks": false,
+        "crossFilter": [],
+        "drillthrough": []
+      }
+    },
+    {
+      "id": "cfbbdc1c-b797-4931-8536-9d2e67561389",
+      "title": "Engine Temperature",
+      "visualType": "card",
+      "pageId": "41b027f7-f914-4106-bbe1-f888c7bcd664",
+      "layout": {
+        "x": 6,
+        "y": 17,
+        "width": 5,
+        "height": 4
+      },
+      "queryRef": {
+        "kind": "query",
+        "queryId": "88860f5a-2973-4f39-b169-d9eb204c1015"
+      },
+      "visualOptions": {
+        "multiStat__textSize": "large",
+        "multiStat__valueColumn": null,
+        "colorRulesDisabled": false,
+        "colorRules": [
+          {
+            "id": "22b01fa4-bdf7-4cd5-94aa-9fd2c8b82d0a",
+            "ruleType": "colorByCondition",
+            "applyToColumn": null,
+            "hideText": false,
+            "applyTo": "cells",
+            "conditions": [
+              {
+                "operator": ">",
+                "column": "Max_Temp",
+                "values": [
+                  "90"
+                ]
+              }
+            ],
+            "chainingOperator": "and",
+            "colorStyle": "bold",
+            "color": "red",
+            "tag": "",
+            "icon": "critical",
+            "ruleName": "",
+            "visualType": "card"
+          },
+          {
+            "id": "23cfc34d-2605-4b0e-8847-819610958c43",
+            "ruleType": "colorByCondition",
+            "applyToColumn": null,
+            "hideText": false,
+            "applyTo": "cells",
+            "conditions": [
+              {
+                "operator": "<",
+                "column": "Max_Temp",
+                "values": [
+                  "90"
+                ]
+              }
+            ],
+            "chainingOperator": "and",
+            "colorStyle": "bold",
+            "color": "green",
+            "tag": "",
+            "icon": "completed",
+            "ruleName": "",
+            "visualType": "card"
+          }
+        ]
       }
     }
   ],
@@ -536,7 +960,7 @@
   ],
   "pages": [
     {
-      "name": "Errors Report",
+      "name": "Alert Report",
       "id": "a405cc7d-c248-4a26-b62f-79aad1a3fc43"
     },
     {
@@ -567,7 +991,7 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento in (\"Temperature\", \"Humidity\")\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or Comboio in (p_comboio)\r\n| order by Datahora_Evento desc\r\n| take 500",
+      "text": "Tabela_Alertas\r\n| where Tipo_de_Evento in (\"Temperature\", \"Humidity\")\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or Comboio in (p_comboio)\r\n| order by Datahora_Evento desc\r\n| take 500",
       "id": "9e62f875-9ece-4cd1-946f-e6dbe5cef867",
       "usedVariables": [
         "_endTime",
@@ -580,9 +1004,11 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "Tabela_Alertas\r\n// A linha mágica que entende o \"All\" ou filtra pelo comboio específico\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n| where Tipo_Alerta contains \"Temperatura\"\r\n| count",
+      "text": "Tabela_Alertas\r\n// 1. Liga ao parâmetro de tempo do Dashboard (Time range)\r\n| where Datahora_Evento between (_startTime .. _endTime)\r\n// 2. Liga ao parâmetro do Comboio (Train Filter) - Sem usar o 'let'!\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 3. A tua métrica\r\n| where Tipo_Alerta contains \"Temperatura\"\r\n| count",
       "id": "8d4bd512-2dc7-4e04-9d5e-2aac212eda5d",
       "usedVariables": [
+        "_endTime",
+        "_startTime",
         "p_comboio"
       ]
     },
@@ -591,7 +1017,7 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "Tabela_Alertas\r\n// 1. Manter o filtro dinâmico do comboio\r\n| where tostring(Comboio) == p_comboio\r\n// 2. Garantir que as coordenadas são lidas como números e existem\r\n| extend Latitude = todouble(Latitude), Longitude = todouble(Longitude)\r\n| where isnotnull(Latitude) and isnotnull(Longitude)\r\n// 3. Trazer apenas as colunas que interessam para o mapa ficar rápido\r\n| project Datahora_Evento, Tipo_Alerta, Carruagem, Latitude, Longitude",
+      "text": "Tabela_Alertas\r\n// 1. Filtro dinâmico robusto (entende o \"All\" e seleções múltiplas)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 2. Garantir que as coordenadas são lidas como números e existem\r\n| extend Latitude = todouble(Latitude), Longitude = todouble(Longitude)\r\n| where isnotnull(Latitude) and isnotnull(Longitude)\r\n// 3. Trazer apenas as colunas que interessam para o mapa ficar rápido\r\n| project Datahora_Evento, Tipo_Alerta, Carruagem, Latitude, Longitude",
       "id": "b8cf0850-6ea9-4846-8bbb-1d420e3fbb33",
       "usedVariables": [
         "p_comboio"
@@ -602,9 +1028,11 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "Tabela_Alertas\r\n// A linha inteligente que entende o \"All\" ou filtra pelo comboio específico\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n| where Tipo_Alerta contains \"Humidade\"\r\n| count",
+      "text": "Tabela_Alertas\r\n// 1. Liga ao parâmetro de tempo do Dashboard (Time range)\r\n| where Datahora_Evento between (_startTime .. _endTime)\r\n// 2. Liga ao parâmetro do Comboio (Train Filter)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 3. A métrica específica deste cartão\r\n| where Tipo_Alerta contains \"Humidade\"\r\n| count",
       "id": "abf12783-d2ae-4ed0-8692-b8a01ddf46f5",
       "usedVariables": [
+        "_endTime",
+        "_startTime",
         "p_comboio"
       ]
     },
@@ -640,7 +1068,7 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "V2\r\n// 1. Ouve o calendário do dashboard\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n// 2. A nossa regra inteligente do \"All\"\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n| summarize Frota_Online = dcount(Comboio)",
+      "text": "V2\r\n// 1. Liga ao parâmetro de tempo do Dashboard (Time range)\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n// 2. Liga ao parâmetro do Comboio (Train Filter)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 3. Conta os comboios únicos a transmitir dados\r\n| summarize Frota_Online = dcount(Comboio)",
       "id": "5d80b8d3-c233-4b80-abc6-4251b58d53fb",
       "usedVariables": [
         "_endTime",
@@ -671,9 +1099,13 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Temperature\"\r\n// Janela alargada para 24h para garantir que vês sempre os dados dos teus testes de hoje!\r\n| where todatetime(Datahora_Evento) > ago(24h)\r\n| summarize Temp_Maxima = max(todouble(Valor)) by Comboio, Carruagem\r\n| top 1 by Temp_Maxima\r\n| project Alerta = strcat(\"Value: \", Temp_Maxima, \"°C (Train. \", Comboio, \")\")",
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Temperature\"\r\n// 1. Respeita o parâmetro de tempo do topo da página\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n// 2. Respeita o parâmetro do comboio\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 3. A tua lógica original (que está excelente para formatar o texto!)\r\n| summarize Temp_Maxima = max(todouble(Valor)) by Comboio, Carruagem\r\n| top 1 by Temp_Maxima\r\n| project Alerta = strcat(\"Value: \", Temp_Maxima, \"ºC (Train. \", Comboio, \")\")",
       "id": "3069c823-8e3f-43d6-989b-8a9ab32c63a9",
-      "usedVariables": []
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
     },
     {
       "dataSource": {
@@ -689,35 +1121,177 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Humidity\"\r\n// Mantemos a janela de 24h para garantir que vês os dados dos testes de hoje\r\n| where todatetime(Datahora_Evento) > ago(24h)\r\n| summarize Max_Humidade = max(todouble(Valor)) by Comboio, Carruagem\r\n| top 1 by Max_Humidade\r\n| project Alerta = strcat(\"Value: \", Max_Humidade, \"% (Train. \", Comboio, \")\")",
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Humidity\"\r\n// 1. Respeita o parâmetro de tempo do topo da página (Time range)\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n// 2. Respeita o parâmetro do comboio (Train Filter)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 3. A tua lógica para encontrar o valor máximo\r\n| summarize Max_Humidade = max(todouble(Valor)) by Comboio, Carruagem\r\n| top 1 by Max_Humidade\r\n| project Alerta = strcat(\"Value: \", Max_Humidade, \"% (Train. \", Comboio, \")\")",
       "id": "a3e3a28a-acb8-4840-a0f3-ab640ee24b9d",
-      "usedVariables": []
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Temperature\"\r\n| where todatetime(Datahora_Evento) > ago(24h)\r\n| summarize Min_Temp = min(todouble(Valor)) by Comboio, Carruagem\r\n// O 'asc' é fundamental aqui para trazer o valor mais baixo para o topo!\r\n| top 1 by Min_Temp asc\r\n| project Alerta = strcat(\"Value: \", Min_Temp, \"°C (Train. \", Comboio, \")\")",
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Temperature\"\r\n// 1. Respeita o parâmetro de tempo do topo da página\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n// 2. Respeita o parâmetro do comboio\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 3. A tua lógica original para a temperatura mínima\r\n| summarize Min_Temp = min(todouble(Valor)) by Comboio, Carruagem\r\n// O 'asc' é fundamental aqui para trazer o valor mais baixo para o topo!\r\n| top 1 by Min_Temp asc\r\n| project Alerta = strcat(\"Value: \", Min_Temp, \"ºC (Train. \", Comboio, \")\")",
       "id": "b70550a7-0106-4a2d-bb83-ab7e5bba8fd3",
-      "usedVariables": []
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Humidity\"\r\n| where todatetime(Datahora_Evento) > ago(24h)\r\n| summarize Min_Humidade = min(todouble(Valor)) by Comboio, Carruagem\r\n| top 1 by Min_Humidade asc\r\n| project Alerta = strcat(\"Min: \", Min_Humidade, \"% (Train \", Comboio, \")\")",
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Humidity\"\r\n// 1. Respeita o parâmetro de tempo do topo da página (Time range)\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n// 2. Respeita o parâmetro do comboio (Train Filter)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 3. Lógica para encontrar o valor mínimo\r\n| summarize Min_Humidade = min(todouble(Valor)) by Comboio, Carruagem\r\n| top 1 by Min_Humidade asc\r\n| project Alerta = strcat(\"Min: \", Min_Humidade, \"% (Train. \", Comboio, \")\")",
       "id": "63413e71-996e-42f3-97ac-53168633f5d4",
-      "usedVariables": []
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
     },
     {
       "dataSource": {
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento in (\"Temperature\", \"Humidity\")\r\n// 1. Ouve o filtro de tempo do topo da página\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n// 2. Ouve o filtro do comboio\r\n| where Comboio in (p_comboio) \r\n// 3. Ordena do registo mais recente para o mais antigo (usando a coluna original)\r\n| order by Datahora_Evento desc\r\n// 4. Traz as últimas 500 linhas para o dashboard manter a performance\r\n| take 500",
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento in (\"Temperature\", \"Humidity\")\r\n// 1. Ouve o filtro de tempo do topo da página\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n// 2. A MÁGICA DO \"ALL\": Ouve o filtro do comboio corretamente\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 3. Ordena do registo mais recente para o mais antigo\r\n| order by Datahora_Evento desc\r\n// 4. Traz as últimas 500 linhas para o dashboard manter a performance\r\n| take 500",
       "id": "33f6b874-7395-407b-b7df-cd7f659643a6",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Alertas\r\n| where Datahora_Evento between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n| summarize Total_Falhas = count() by Tipo_Alerta",
+      "id": "f3b08bea-c6c3-46c6-a457-afae50e0ea62",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Alertas\r\n// 1. Filtro de Tempo\r\n| where Datahora_Evento between (_startTime .. _endTime)\r\n// 2. Filtro do Comboio\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 3. Filtra apenas os alertas de portas\r\n| where Tipo_Alerta contains \"Porta aberta\" or Tipo_Alerta contains \"Door Open\"\r\n| count",
+      "id": "b85f0afb-3873-412a-b915-b07ec3bc4cf9",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Alertas\r\n| where Datahora_Evento between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// Filtra os alertas de travões\r\n| where Tipo_Alerta contains \"Travões trancados\" or Tipo_Alerta contains \"Brake Drag\"\r\n| count",
+      "id": "1657de56-052d-456e-b069-b2624284f6cd",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Alertas\r\n| where Datahora_Evento between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// Filtra os alertas do motor a ferver\r\n| where Tipo_Alerta contains \"Engine Overheat\"\r\n| count",
+      "id": "1bd784f7-d70a-4fc4-b261-2bfae702356f",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "Tabela_Alertas\r\n| where Datahora_Evento between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// Filtra os alertas de incêndio/fumo\r\n| where Tipo_Alerta contains \"Fumo\" or Tipo_Alerta contains \"Smoke\"\r\n| count",
+      "id": "440a77da-b347-4469-8fa8-64d3a4382bae",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "tabela_variaveis_lentas_filtrada\r\n| where Tipo_de_Evento == \"Temperature\"\r\n// 1. Filtros de Tempo e Comboio\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 2. Agrupar a cada 1 minuto para veres as linhas a formar-se rapidamente\r\n| summarize Media_Temperatura = round(avg(todouble(Valor)), 1) \r\n    by Intervalo_1Min = bin(todatetime(Datahora_Evento), 1m), Comboio\r\n// 3. Ordenar no tempo para o gráfico desenhar da esquerda para a direita\r\n| order by Intervalo_1Min asc",
+      "id": "8834edb3-58bc-41e6-81f6-baf13ee2894c",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "V2\r\n| where Tipo_de_Evento == \"Speed\"\r\n// 1. Filtros globais de tempo e comboio\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 2. Considera apenas comboios em movimento (ajusta o limite se necessário)\r\n| where todouble(Valor) > 5\r\n// 3. Calcula a média global da velocidade\r\n| summarize Velocidade_Media = round(avg(todouble(Valor)), 1)",
+      "id": "8bd7a189-da1e-41cc-9c57-72d5c938e2cd",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "V2\r\n| where Tipo_de_Evento == \"Speed\"\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n| extend Velocidade = round(todouble(Valor), 2)\r\n// 1. Filtra infrações acima do limite (120 km/h)\r\n| where Velocidade > 120\r\n// 2. arg_max: Encontra a velocidade máxima e traz o contexto exato desse segundo\r\n| summarize arg_max(Velocidade, Datahora_Evento, Latitude, Longitude, Carruagem) by Comboio\r\n// 3. Ordena os infratores do mais rápido para o mais lento\r\n| order by Velocidade desc\r\n// 4. Limita aos 5 piores casos\r\n| take 5\r\n// 5. Project: Traduz e organiza os nomes das colunas para o Dashboard final\r\n| project \r\n    Train = Comboio, \r\n    Carriage = Carruagem, \r\n    Max_Speed_kmh = Velocidade, \r\n    Infraction_Time = Datahora_Evento, \r\n    Latitude, \r\n    Longitude",
+      "id": "b148e3a2-750c-423b-a809-a4c951ff8efa",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "V2\r\n// 1. Filtra as duas variáveis cinemáticas em simultâneo\r\n| where Tipo_de_Evento in (\"Speed\", \"Brake Pressure\")\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 2. Isola as métricas em colunas separadas agrupando por minuto e comboio\r\n| summarize\r\n    Velocidade = round(avgif(todouble(Valor), Tipo_de_Evento == \"Speed\"), 1),\r\n    Pressao_Travao = round(avgif(todouble(Valor), Tipo_de_Evento == \"Brake Pressure\"), 1)\r\n    by Intervalo_1Min = bin(todatetime(Datahora_Evento), 1m), Comboio\r\n| order by Intervalo_1Min asc",
+      "id": "05a95f98-d592-4a87-ae23-9f456345494b",
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
+    },
+    {
+      "dataSource": {
+        "kind": "inline",
+        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
+      },
+      "text": "V2\r\n| where ['Tipo_de_Evento'] == \"Engine Temperature\"\r\n| where todatetime(['Datahora_Evento']) between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n| summarize Max_Temp = round(max(todouble(Valor)), 1)",
+      "id": "88860f5a-2973-4f39-b169-d9eb204c1015",
       "usedVariables": [
         "_endTime",
         "_startTime",

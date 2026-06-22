@@ -13,7 +13,7 @@
       }
     },
     {
-      "enabled": false,
+      "enabled": true,
       "jobType": "Execute",
       "configuration": {
         "type": "Cron",
