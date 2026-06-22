@@ -330,10 +330,10 @@
       },
       "definition": {
         "type": "Rule",
-        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"fb95c887-42d2-41f8-a370-5f7dd262c001\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"fd2786a6-75c5-4791-a248-aa3d2b376eb5\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"8d8a1306-a46c-417b-a75b-1717ccf8a384\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"6645519f-e0c2-42d5-84ca-4e5dedd828fd\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator alert Door Open in mov V5\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"The condition for 'Door Open in mov V5' has been met\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"fb95c887-42d2-41f8-a370-5f7dd262c001\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"fd2786a6-75c5-4791-a248-aa3d2b376eb5\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"8d8a1306-a46c-417b-a75b-1717ccf8a384\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"6645519f-e0c2-42d5-84ca-4e5dedd828fd\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator alert Door Open in mov V5\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"The condition for 'Door Open in mov V5' has been met\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Comboio\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Comboio\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Carruagem\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Carruagem\"}],\"name\":\"reference\"}]}]}]}]}]}",
         "settings": {
           "shouldRun": true,
-          "shouldApplyRuleOnUpdate": false
+          "shouldApplyRuleOnUpdate": true
         }
       }
     },
@@ -467,6 +467,74 @@
       "definition": {
         "type": "Rule",
         "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"52984859-cf10-4854-8c7e-0f3ea24bf710\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"b8598387-8a5b-4755-9463-d162063f0c6c\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"aa25d063-f691-4067-9dc8-04216e763cf7\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"bae8bc01-270c-4093-80c5-8672796d2830\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator alert Engine Temperature V1\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"The condition for 'Engine Temperature V1' has been met\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
+        "settings": {
+          "shouldRun": true,
+          "shouldApplyRuleOnUpdate": false
+        }
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "9945bf73-dbaa-4d2a-b05f-ef475598ee12",
+    "payload": {
+      "name": "Activator",
+      "type": "kqlQueries"
+    },
+    "type": "container-v1"
+  },
+  {
+    "uniqueIdentifier": "9ce4df1a-5707-4f58-ba53-eec464e6eb29",
+    "payload": {
+      "name": "Raw_Data_datalive event",
+      "runSettings": {
+        "executionIntervalInSeconds": 300
+      },
+      "query": {
+        "queryString": "V2\n// 1. FILTRO DE PERFORMANCE: Exatamente 1 minuto (Sem sobreposições!)\n// Lê tudo a partir de há 1 minuto atrás, até ao segundo atual (agora)\n| where todatetime(Datahora_Evento) >= ago(5m) and todatetime(Datahora_Evento) < now()\n| where Tipo_de_Evento in (\"Door Open\", \"Speed\")\n// 2. AGRUPAMENTO AO SEGUNDO\n| summarize \n    Estado_Porta = maxif(todouble(Valor), Tipo_de_Evento == \"Door Open\"),\n    Velocidade = maxif(todouble(Valor), Tipo_de_Evento == \"Speed\")\n    by Comboio, Carruagem, SegundoExato = bin(todatetime(Datahora_Evento), 1s)\n// 3. CONDIÇÃO CRÍTICA\n| where Estado_Porta == 1 and Velocidade > 10\n// 4. AGRUPAMENTO FINAL (Já não precisas do TimeWindow porque a query já isolou o minuto)\n| summarize \n    MaxVelocidade = max(Velocidade),\n    Segundos_em_Perigo_Neste_Minuto = count()\n    by Comboio, Carruagem"
+      },
+      "eventhouseItem": {
+        "itemId": "875b1d64-1a31-ae65-4893-fff353e0256f",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "itemType": "KustoDatabase"
+      },
+      "queryParameters": [],
+      "metadata": {
+        "workspaceId": "e9ab2e73-7dab-4a9a-83ba-4f0432562ce1",
+        "measureName": "",
+        "querySetId": "b4a4ab25-de2a-4d9c-8563-bd4134a53c34",
+        "queryId": "06b6cd5a-3f0b-4c62-9abb-e32f6d03c9c4"
+      },
+      "parentContainer": {
+        "targetUniqueIdentifier": "9945bf73-dbaa-4d2a-b05f-ef475598ee12"
+      }
+    },
+    "type": "kqlSource-v1"
+  },
+  {
+    "uniqueIdentifier": "6aa0f668-1970-4762-84cd-8c9f245ca5a1",
+    "payload": {
+      "name": "Raw_Data_datalive event",
+      "parentContainer": {
+        "targetUniqueIdentifier": "9945bf73-dbaa-4d2a-b05f-ef475598ee12"
+      },
+      "definition": {
+        "type": "Event",
+        "instance": "{\"templateId\":\"SourceEvent\",\"templateVersion\":\"1.1\",\"steps\":[{\"name\":\"SourceEventStep\",\"id\":\"860bc351-7d21-45fd-aefd-c9ab902f409d\",\"rows\":[{\"name\":\"SourceSelector\",\"kind\":\"SourceReference\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"9ce4df1a-5707-4f58-ba53-eec464e6eb29\"}]}]}]}"
+      }
+    },
+    "type": "timeSeriesView-v1"
+  },
+  {
+    "uniqueIdentifier": "be6a6444-2221-4ef6-b01e-52e1fd51a880",
+    "payload": {
+      "name": "Door Open in Mov 6",
+      "parentContainer": {
+        "targetUniqueIdentifier": "9945bf73-dbaa-4d2a-b05f-ef475598ee12"
+      },
+      "definition": {
+        "type": "Rule",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"2e810019-ef57-4949-94b6-59a662623e5b\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"6aa0f668-1970-4762-84cd-8c9f245ca5a1\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"5ab7922f-ddea-4626-b9ec-708e64862ad7\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"a56d8285-3f46-4c84-b2c3-e4a0c5ab378e\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator Trigger: New event from Raw_Data_datalive\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"New event from Raw_Data_datalive\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
         "settings": {
           "shouldRun": true,
           "shouldApplyRuleOnUpdate": false
