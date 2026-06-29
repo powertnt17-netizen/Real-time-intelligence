@@ -6,6 +6,11 @@
     "defaultInterval": "30s",
     "minInterval": "30s"
   },
+  "changeDetection": {
+    "kind": "liveUpdates",
+    "minRefreshRate": "30s",
+    "fallbackRefreshRate": "30s"
+  },
   "tiles": [
     {
       "id": "66fb24b1-04ca-4d61-9d2e-11b95cc1b0ae",
@@ -209,7 +214,7 @@
         "x": 0,
         "y": 9,
         "width": 6,
-        "height": 14
+        "height": 17
       },
       "queryRef": {
         "kind": "query",
@@ -991,7 +996,7 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "Tabela_Alertas\r\n| where Tipo_de_Evento in (\"Temperature\", \"Humidity\")\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or Comboio in (p_comboio)\r\n| order by Datahora_Evento desc\r\n| take 500",
+      "text": "Tabela_Alertas\r\n// 1. Filtro de tempo ligado ao dashboard\r\n| where todatetime(Datahora_Evento) between (_startTime .. _endTime)\r\n// 2. Filtro dinâmico do comboio\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 3. Mostra todos os erros críticos (Se quiseres mesmo limitar, ajusta esta linha)\r\n// | where Tipo_de_Evento in (\"Door Open\", \"Smoke Detector\", \"Temperature\", \"Humidity\")\r\n// 4. Ordena para veres sempre a emergência mais recente no topo\r\n| order by todatetime(Datahora_Evento) desc\r\n// 5. Opcional: traduzir os cabeçalhos para inglês para manter o padrão profissional do dashboard\r\n| project \r\n    Train = Comboio,\r\n    Carriage = Carruagem,\r\n    Alert_Time = Datahora_Evento,\r\n    Event_Type = Tipo_de_Evento,\r\n    Alert_Description = Tipo_Alerta,\r\n    Value = Valor,\r\n    Latitude,\r\n    Longitude\r\n| take 500",
       "id": "9e62f875-9ece-4cd1-946f-e6dbe5cef867",
       "usedVariables": [
         "_endTime",
