@@ -488,9 +488,9 @@
       "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
       "layout": {
         "x": 0,
-        "y": 17,
+        "y": 14,
         "width": 9,
-        "height": 9
+        "height": 12
       },
       "queryRef": {
         "kind": "query",
@@ -592,35 +592,13 @@
       }
     },
     {
-      "id": "5971f10e-b034-4db0-9ee1-2dcff0eff53e",
-      "title": "Engine Temperature",
-      "visualType": "card",
-      "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
-      "layout": {
-        "x": 6,
-        "y": 11,
-        "width": 3,
-        "height": 3
-      },
-      "queryRef": {
-        "kind": "query",
-        "queryId": "1bd784f7-d70a-4fc4-b261-2bfae702356f"
-      },
-      "visualOptions": {
-        "multiStat__textSize": "large",
-        "multiStat__valueColumn": null,
-        "colorRulesDisabled": false,
-        "colorRules": []
-      }
-    },
-    {
       "id": "04306ca8-ee3b-48ec-9a30-53ad700ef7cc",
       "title": "Smoke Alert",
       "visualType": "card",
       "pageId": "a405cc7d-c248-4a26-b62f-79aad1a3fc43",
       "layout": {
-        "x": 0,
-        "y": 14,
+        "x": 6,
+        "y": 11,
         "width": 3,
         "height": 3
       },
@@ -755,10 +733,10 @@
       "visualType": "table",
       "pageId": "41b027f7-f914-4106-bbe1-f888c7bcd664",
       "layout": {
-        "x": 16,
-        "y": 0,
-        "width": 8,
-        "height": 6
+        "x": 11,
+        "y": 17,
+        "width": 13,
+        "height": 8
       },
       "queryRef": {
         "kind": "query",
@@ -842,10 +820,10 @@
       "visualType": "card",
       "pageId": "41b027f7-f914-4106-bbe1-f888c7bcd664",
       "layout": {
-        "x": 6,
-        "y": 17,
+        "x": 16,
+        "y": 0,
         "width": 5,
-        "height": 4
+        "height": 6
       },
       "queryRef": {
         "kind": "query",
@@ -1022,9 +1000,11 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "Tabela_Alertas\r\n// 1. Filtro dinâmico robusto (entende o \"All\" e seleções múltiplas)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 2. Garantir que as coordenadas são lidas como números e existem\r\n| extend Latitude = todouble(Latitude), Longitude = todouble(Longitude)\r\n| where isnotnull(Latitude) and isnotnull(Longitude)\r\n// 3. Trazer apenas as colunas que interessam para o mapa ficar rápido\r\n| project Datahora_Evento, Tipo_Alerta, Carruagem, Latitude, Longitude",
+      "text": "Tabela_Alertas\r\n// 0. Aplicar o filtro de tempo do dashboard (Crucial para a performance e filtragem)\r\n| where Datahora_Evento between (_startTime .. _endTime)\r\n// 1. Filtro dinâmico robusto (entende o \"All\" e seleções múltiplas)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 2. Garantir que as coordenadas são lidas como números e existem\r\n| extend Latitude = todouble(Latitude), Longitude = todouble(Longitude)\r\n| where isnotnull(Latitude) and isnotnull(Longitude)\r\n// 3. Trazer apenas as colunas que interessam para o mapa ficar rápido\r\n| project Datahora_Evento, Tipo_Alerta, Carruagem, Latitude, Longitude",
       "id": "b8cf0850-6ea9-4846-8bbb-1d420e3fbb33",
       "usedVariables": [
+        "_endTime",
+        "_startTime",
         "p_comboio"
       ]
     },
@@ -1046,9 +1026,13 @@
         "kind": "inline",
         "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
       },
-      "text": "Tabela_Desperdicio\r\n| summarize Minutos_Desperdicio = count() * 5 by Comboio, Carruagem\r\n| extend Identificacao = strcat(\"Comboio \", Comboio, \" - Carr. \", Carruagem)\r\n// A magia acontece aqui: escondemos tudo o resto e entregamos só 2 colunas ao gráfico!\r\n| project Identificacao, Minutos_Desperdicio\r\n| order by Minutos_Desperdicio desc",
+      "text": "Tabela_Desperdicio\r\n// 1. Aplicar o filtro de tempo (confirma se a coluna de data nesta tabela também se chama Datahora_Evento)\r\n| where Datahora_Evento between (_startTime .. _endTime)\r\n// 2. Filtro dinâmico robusto para o comboio\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// 3. O teu cálculo de desperdício\r\n| summarize Minutos_Desperdicio = count() * 5 by Comboio, Carruagem\r\n// 4. Formatação e ordenação\r\n| extend Identificacao = strcat(\"Comboio \", Comboio, \" - Carr. \", Carruagem)\r\n| project Identificacao, Minutos_Desperdicio\r\n| order by Minutos_Desperdicio desc",
       "id": "6bbad13f-c478-4e6b-b4e2-1575e711ac74",
-      "usedVariables": []
+      "usedVariables": [
+        "_endTime",
+        "_startTime",
+        "p_comboio"
+      ]
     },
     {
       "dataSource": {
@@ -1206,19 +1190,6 @@
       },
       "text": "Tabela_Alertas\r\n| where Datahora_Evento between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// Filtra os alertas de travões\r\n| where Tipo_Alerta contains \"Travões trancados\" or Tipo_Alerta contains \"Brake Drag\"\r\n| count",
       "id": "1657de56-052d-456e-b069-b2624284f6cd",
-      "usedVariables": [
-        "_endTime",
-        "_startTime",
-        "p_comboio"
-      ]
-    },
-    {
-      "dataSource": {
-        "kind": "inline",
-        "dataSourceId": "2685d6ea-8914-4061-8593-8f8e9f1644ac"
-      },
-      "text": "Tabela_Alertas\r\n| where Datahora_Evento between (_startTime .. _endTime)\r\n| where p_comboio == \"All\" or p_comboio == \"*\" or p_comboio == \"\" or tostring(Comboio) in (p_comboio)\r\n// Filtra os alertas do motor a ferver\r\n| where Tipo_Alerta contains \"Engine Overheat\"\r\n| count",
-      "id": "1bd784f7-d70a-4fc4-b261-2bfae702356f",
       "usedVariables": [
         "_endTime",
         "_startTime",
