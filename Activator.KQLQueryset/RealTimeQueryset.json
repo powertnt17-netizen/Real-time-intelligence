@@ -4,15 +4,15 @@
     "dataSources": [
       {
         "id": "e3495398-879f-425a-8911-5ae67431a700",
-        "clusterUri": "https://trd-6545xnp9gheg6sy7ma.z0.kusto.fabric.microsoft.com",
+        "clusterUri": "",
         "type": "Fabric",
-        "databaseItemId": "Raw_Data_datalive"
+        "databaseItemId": "875b1d64-1a31-ae65-4893-fff353e0256f"
       }
     ],
     "tabs": [
       {
         "id": "bf5e3a1d-8a9b-4ffc-b989-f2f77f41b60a",
-        "content": "V2\n// 1. FILTRO DE PERFORMANCE: Ler apenas os últimos 2 minutos\n| where todatetime(Datahora_Evento) >= ago(2m) \n| where Tipo_de_Evento == \"Temperature\"\n| extend NumericValue = todouble(Valor)\n| where NumericValue < 20 or NumericValue > 25\n// 2. AGRUPAR DENTRO DO MINUTO ATUAL\n| summarize \n    MaxValue = max(NumericValue),\n    TotalOccurrences_ThisMinute = count()\n    by ID_Equipamento, Carruagem, Comboio, TimeWindow = bin(todatetime(Datahora_Evento), 1m)\n// O Activator vai ler esta linha: tem o comboio, o valor máximo atingido e quantos \"picos\" deu neste minuto.",
+        "content": "Smoke_Irregular_FunctionV2\n// 1. FILTRO DE PERFORMANCE: Ler apenas os últimos 2 minutos\n| where todatetime(Datahora_Evento) >= ago(2m) \n| where Tipo_de_Evento == \"Temperature\"\n| extend NumericValue = todouble(Valor)\n| where NumericValue < 20 or NumericValue > 25\n// 2. AGRUPAR DENTRO DO MINUTO ATUAL\n| summarize \n    MaxValue = max(NumericValue),\n    TotalOccurrences_ThisMinute = count()\n    by ID_Equipamento, Carruagem, Comboio, TimeWindow = bin(todatetime(Datahora_Evento), 1m)\n// O Activator vai ler esta linha: tem o comboio, o valor máximo atingido e quantos \"picos\" deu neste minuto.",
         "title": "Temp error V2 ",
         "dataSourceId": "e3495398-879f-425a-8911-5ae67431a700"
       },
