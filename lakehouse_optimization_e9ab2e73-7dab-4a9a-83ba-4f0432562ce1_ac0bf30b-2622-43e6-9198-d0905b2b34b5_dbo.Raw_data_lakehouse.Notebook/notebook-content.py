@@ -3,6 +3,9 @@
 # METADATA ********************
 
 # META {
+# META   "kernel_info": {
+# META     "name": "synapse_pyspark"
+# META   },
 # META   "dependencies": {
 # META     "lakehouse": {
 # META       "default_lakehouse": "ac0bf30b-2622-43e6-9198-d0905b2b34b5",
@@ -32,3 +35,10 @@ deltaTable.optimize().executeCompaction()
 #     startDate = (datetime.now() - timedelta(days=3)).strftime('%Y-%m-%d')
 #     deltaTable.optimize().where("date > '{}'".format(startDate)).executeCompaction()
 
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }

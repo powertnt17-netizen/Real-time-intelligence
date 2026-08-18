@@ -26,26 +26,26 @@ from pyspark.sql import functions as F
 from pyspark.sql.window import Window
 from delta.tables import DeltaTable
 
-# --- 1. CONFIGURAÇÃO DO CHECKPOINT ---
-# Guarda o estado do streaming para saber onde ficou na última execução
+# --- 1. Checkpoint Configuration ---
+#Saves the streaming state to know where was the last execution 
 checkpoint_path = "Files/checkpoints/train_fleet_dev"
 
-# --- 2. LER DA TABELA BRUTA (STREAMING) ---
+# --- 2. Reading from the raw table  (STREAMING) ---
 df_stream = spark.readStream.table("dbo.Raw_data_lakehouse") \
     .filter("Tipo_de_Evento IN ('Temperature', 'Humidity', 'Door Open', 'Lights')")
 
-# --- 3. CONFIGURAÇÃO DA JANELA DE ORDENAÇÃO ---
+# --- 3.Order window configuration  ---
 # Particiona por sensor específico para analisar a linha temporal de cada um isoladamente
 window_spec = Window.partitionBy("Comboio", "Carruagem", "ID_Equipamento").orderBy("Datahora_Evento")
 
-# --- 4. FUNÇÃO DE PROCESSAMENTO DE CADA LOTE (MICRO-BATCH) ---
+# --- 4.Processing function for each batch (MICRO-BATCH) ---
 def process_batch(batch_df, batch_id):
     if batch_df.isEmpty():
         return
     
-    # A. LIMPEZA E ARREDONDAMENTO DE RUÍDO
-    # Se for Temperatura ou Humidade, arredonda para 0 casas decimais. Senão, mantém.
-    # Fazemos cast para string no final para manter a consistência com variáveis de texto (ex: 'Open')
+    # A. noise and round
+    # If it is temperature or humidity, rounds the values 
+    # Cast is done to string in the final to keep the consistent with text variables
     cleaned_df = batch_df.withColumn(
         "Valor",
         F.when(
@@ -54,7 +54,7 @@ def process_batch(batch_df, batch_id):
         ).otherwise(F.col("Valor"))
     )
     
-    # B. DEDUPLICAÇÃO E CÁLCULO DE DATAS (INÍCIO E FIM DENTRO DO LOTE)
+    # B. Deduplications and dates calculations
     enriched_df = cleaned_df \
         .withColumn("prev_valor", F.lag("Valor").over(window_spec)) \
         .filter("Valor != prev_valor OR prev_valor IS NULL") \
@@ -62,12 +62,12 @@ def process_batch(batch_df, batch_id):
         .withColumn("Chave_Ativo", F.concat_ws("-", F.col("Comboio"), F.col("Carruagem"))) \
         .drop("prev_valor")
         
-    # C. ESCRITA NA TABELA FINAL (LÓGICA SCD TIPO 2)
+    # C. Writing in the final table (SCD)
     try:
         dt = DeltaTable.forName(spark, "dbo.tabela_variaveis_lentas_filtrada")
         
-        # Passo C1: Descobrir o primeiro evento deste lote para cada sensor
-        # Isto serve para fechar o registo anterior que ficou em aberto (NULL) na tabela Delta
+        # Step  C1: Find out the first event from this batch to each sensore 
+        # This is used to close the previous registar that was opened in the delta table
         updates_df = enriched_df.select(
             F.col("Comboio").alias("s_comboio"),
             F.col("Carruagem").alias("s_carruagem"),
@@ -78,7 +78,7 @@ def process_batch(batch_df, batch_id):
         min_events_df = updates_df.groupBy("s_comboio", "s_carruagem", "s_equipamento") \
             .agg(F.min("s_inicio").alias("min_inicio"))
             
-        # Passo C2: Fechar as linhas antigas na tabela de destino
+        # Step  C2: Close the lines in the previous lines in the destination table 
         dt.alias("target").merge(
             min_events_df.alias("source"),
             """
@@ -90,7 +90,7 @@ def process_batch(batch_df, batch_id):
             """
         ).whenMatchedUpdate(set = {"Datahora_Fim": "source.min_inicio"}).execute()
         
-        # Passo C3: Inserir as novas linhas tratadas deste lote
+        # Step C3: Insert new columns treated in this lot
         dt.alias("target").merge(
             enriched_df.alias("source"),
             """
@@ -102,21 +102,21 @@ def process_batch(batch_df, batch_id):
         ).whenNotMatchedInsertAll().execute()
         
     except Exception as e:
-        # Se a tabela ainda não existir no Lakehouse, cria-a pela primeira vez
+        # If the table still doesn´t exists in the lakehouse, it creates it for the first time 
         enriched_df.write \
             .format("delta") \
             .mode("append") \
             .option("mergeSchema", "true") \
             .saveAsTable("dbo.tabela_variaveis_lentas_filtrada")
 
-# --- 5. INICIAR O MOTOR DE STREAMING ---
+# --- 5. Initiate the streaming engine ---
 query = df_stream.writeStream \
     .foreachBatch(process_batch) \
     .option("checkpointLocation", checkpoint_path) \
     .trigger(availableNow=True) \
     .start()
 
-# Aguarda que o lote atual acabe de processar antes de dar a célula como concluída
+# Waits until that the current lot finish to process before considering cell concluded 
 query.awaitTermination()
 
 # METADATA ********************
