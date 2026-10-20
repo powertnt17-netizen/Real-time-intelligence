@@ -13,6 +13,7 @@
     "payload": {
       "name": "Raw_Data_datalive event",
       "runSettings": {
+        "isStopped": false,
         "executionIntervalInSeconds": 60
       },
       "query": {
@@ -58,10 +59,10 @@
       },
       "definition": {
         "type": "Rule",
-        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"ba9f1b50-3d0b-45ca-92de-f40078c6a479\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"e29a18ee-06e9-4bea-acda-eaa657598d6c\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"d00d045e-72bf-4246-8a27-ac4c23625546\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"4031963d-cfd0-472e-9d23-83dc69e2b362\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator alert TemmpV2\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"The condition for 'TemmpV2' has been met\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.3.0\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"ba9f1b50-3d0b-45ca-92de-f40078c6a479\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"e29a18ee-06e9-4bea-acda-eaa657598d6c\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"d00d045e-72bf-4246-8a27-ac4c23625546\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"4031963d-cfd0-472e-9d23-83dc69e2b362\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Temperature Alert\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Temperature failure\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Comboio\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Comboio\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Carruagem\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Carruagem\"}],\"name\":\"reference\"}]}]}]}]}]}",
         "settings": {
           "shouldRun": true,
-          "shouldApplyRuleOnUpdate": false
+          "shouldApplyRuleOnUpdate": true
         }
       }
     },
@@ -81,6 +82,7 @@
     "payload": {
       "name": "Raw_Data_datalive event",
       "runSettings": {
+        "isStopped": false,
         "executionIntervalInSeconds": 60
       },
       "query": {
@@ -126,10 +128,10 @@
       },
       "definition": {
         "type": "Rule",
-        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"ffa5b063-a4ad-4409-a4df-29d162c7221b\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"f47eb05f-e597-4a3d-bf6a-7728cb4144b9\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"676531b0-851d-4907-aa9e-5d6288aeb4b7\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"07647bb1-ec4d-4b5b-87a0-c4dcb61c77eb\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator alert HumidityV2\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"The condition for 'HumidityV2' has been met\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.3.0\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"ffa5b063-a4ad-4409-a4df-29d162c7221b\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"f47eb05f-e597-4a3d-bf6a-7728cb4144b9\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"676531b0-851d-4907-aa9e-5d6288aeb4b7\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"07647bb1-ec4d-4b5b-87a0-c4dcb61c77eb\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Humidity Alert\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Humidity Failure\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
         "settings": {
           "shouldRun": true,
-          "shouldApplyRuleOnUpdate": false
+          "shouldApplyRuleOnUpdate": true
         }
       }
     },
@@ -149,6 +151,7 @@
     "payload": {
       "name": "Raw_Data_datalive event",
       "runSettings": {
+        "isStopped": false,
         "executionIntervalInSeconds": 60
       },
       "query": {
@@ -194,10 +197,10 @@
       },
       "definition": {
         "type": "Rule",
-        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"62fba7d1-d0a9-4a9c-b683-788e6cb9d385\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"6a5d10f7-b583-46f8-ae74-e800af3c2646\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"8acbe1d3-88a6-43a5-9586-32cb20fec5a6\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"89b2e220-99e9-4ede-acf6-529c754e07ec\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Smoke Detection\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Please contact \"},{\"kind\":\"EventFieldReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Comboio\"}]},{\"type\":\"string\",\"value\":\" \"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"ID_Equipamento\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"ID_Equipamento\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Carruagem\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Carruagem\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Comboio\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Comboio\"}],\"name\":\"reference\"}]}]}]}]}]}",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.3.0\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"62fba7d1-d0a9-4a9c-b683-788e6cb9d385\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"6a5d10f7-b583-46f8-ae74-e800af3c2646\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"8acbe1d3-88a6-43a5-9586-32cb20fec5a6\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"89b2e220-99e9-4ede-acf6-529c754e07ec\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Smoke Detection\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Please contact \"},{\"kind\":\"EventFieldReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Comboio\"}]},{\"type\":\"string\",\"value\":\" \"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Smoke detection on \"},{\"kind\":\"EventFieldReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Comboio\"}]},{\"type\":\"string\",\"value\":\" \"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"ID_Equipamento\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"ID_Equipamento\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Carruagem\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Carruagem\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Comboio\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Comboio\"}],\"name\":\"reference\"}]}]}]}]}]}",
         "settings": {
           "shouldRun": true,
-          "shouldApplyRuleOnUpdate": false
+          "shouldApplyRuleOnUpdate": true
         }
       }
     },
@@ -217,6 +220,7 @@
     "payload": {
       "name": "Raw_Data_datalive event",
       "runSettings": {
+        "isStopped": false,
         "executionIntervalInSeconds": 60
       },
       "query": {
@@ -285,6 +289,7 @@
     "payload": {
       "name": "Raw_Data_datalive event",
       "runSettings": {
+        "isStopped": false,
         "executionIntervalInSeconds": 60
       },
       "query": {
@@ -330,9 +335,9 @@
       },
       "definition": {
         "type": "Rule",
-        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"fb95c887-42d2-41f8-a370-5f7dd262c001\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"fd2786a6-75c5-4791-a248-aa3d2b376eb5\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"8d8a1306-a46c-417b-a75b-1717ccf8a384\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"6645519f-e0c2-42d5-84ca-4e5dedd828fd\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator alert Door Open in mov V5\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"The condition for 'Door Open in mov V5' has been met\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Comboio\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Comboio\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Carruagem\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Carruagem\"}],\"name\":\"reference\"}]}]}]}]}]}",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.3.0\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"fb95c887-42d2-41f8-a370-5f7dd262c001\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"fd2786a6-75c5-4791-a248-aa3d2b376eb5\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"8d8a1306-a46c-417b-a75b-1717ccf8a384\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"6645519f-e0c2-42d5-84ca-4e5dedd828fd\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Door Open in Movement\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Security failure\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Comboio\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Comboio\"}],\"name\":\"reference\"}]},{\"kind\":\"NameReferencePair\",\"type\":\"complex\",\"arguments\":[{\"name\":\"name\",\"type\":\"string\",\"value\":\"Carruagem\"},{\"kind\":\"EventFieldReference\",\"type\":\"complexReference\",\"arguments\":[{\"name\":\"fieldName\",\"type\":\"string\",\"value\":\"Carruagem\"}],\"name\":\"reference\"}]}]}]}]}]}",
         "settings": {
-          "shouldRun": true,
+          "shouldRun": false,
           "shouldApplyRuleOnUpdate": true
         }
       }
@@ -353,6 +358,7 @@
     "payload": {
       "name": "Raw_Data_datalive event",
       "runSettings": {
+        "isStopped": false,
         "executionIntervalInSeconds": 60
       },
       "query": {
@@ -398,10 +404,10 @@
       },
       "definition": {
         "type": "Rule",
-        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"03fb6b97-cc2c-4330-b4ae-91d5b210a400\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"49f6c76b-4a9d-4321-9913-2a07566b329c\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"d8128607-eb97-459f-818f-482072de64cb\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"4560cf3b-7c99-4131-b58f-127051a6eff1\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator alert Stuck Brake V3\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"The condition for 'Stuck Brake V3' has been met\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.3.0\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"03fb6b97-cc2c-4330-b4ae-91d5b210a400\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"49f6c76b-4a9d-4321-9913-2a07566b329c\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"d8128607-eb97-459f-818f-482072de64cb\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"4560cf3b-7c99-4131-b58f-127051a6eff1\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator alert Stuck Brake \"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Brake Failure\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
         "settings": {
-          "shouldRun": true,
-          "shouldApplyRuleOnUpdate": false
+          "shouldRun": false,
+          "shouldApplyRuleOnUpdate": true
         }
       }
     },
@@ -421,6 +427,7 @@
     "payload": {
       "name": "Raw_Data_datalive event",
       "runSettings": {
+        "isStopped": false,
         "executionIntervalInSeconds": 60
       },
       "query": {
@@ -466,10 +473,10 @@
       },
       "definition": {
         "type": "Rule",
-        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.2.6\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"52984859-cf10-4854-8c7e-0f3ea24bf710\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"b8598387-8a5b-4755-9463-d162063f0c6c\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"aa25d063-f691-4067-9dc8-04216e763cf7\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"bae8bc01-270c-4093-80c5-8672796d2830\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Activator alert Engine Temperature V1\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"The condition for 'Engine Temperature V1' has been met\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
+        "instance": "{\"templateId\":\"EventTrigger\",\"templateVersion\":\"1.3.0\",\"steps\":[{\"name\":\"FieldsDefaultsStep\",\"id\":\"52984859-cf10-4854-8c7e-0f3ea24bf710\",\"rows\":[{\"name\":\"EventSelector\",\"kind\":\"Event\",\"arguments\":[{\"kind\":\"EventReference\",\"type\":\"complex\",\"arguments\":[{\"name\":\"entityId\",\"type\":\"string\",\"value\":\"b8598387-8a5b-4755-9463-d162063f0c6c\"}],\"name\":\"event\"}]}]},{\"name\":\"EventDetectStep\",\"id\":\"aa25d063-f691-4067-9dc8-04216e763cf7\",\"rows\":[{\"name\":\"OnEveryValue\",\"kind\":\"OnEveryValue\",\"arguments\":[]}]},{\"name\":\"ActStep\",\"id\":\"bae8bc01-270c-4093-80c5-8672796d2830\",\"rows\":[{\"name\":\"EmailBinding\",\"kind\":\"EmailMessage\",\"arguments\":[{\"name\":\"messageLocale\",\"type\":\"string\",\"value\":\"en-us\"},{\"name\":\"sentTo\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"2240111@iscap.ipp.pt\"}]},{\"name\":\"copyTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"bCCTo\",\"type\":\"array\",\"values\":[]},{\"name\":\"subject\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Engine Temperature failure\"}]},{\"name\":\"headline\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"Engine Temperature alert\"}]},{\"name\":\"optionalMessage\",\"type\":\"array\",\"values\":[{\"type\":\"string\",\"value\":\"\"}]},{\"name\":\"additionalInformation\",\"type\":\"array\",\"values\":[]}]}]}]}",
         "settings": {
           "shouldRun": true,
-          "shouldApplyRuleOnUpdate": false
+          "shouldApplyRuleOnUpdate": true
         }
       }
     },
@@ -488,6 +495,7 @@
     "payload": {
       "name": "Raw_Data_datalive event",
       "runSettings": {
+        "isStopped": false,
         "executionIntervalInSeconds": 300
       },
       "query": {

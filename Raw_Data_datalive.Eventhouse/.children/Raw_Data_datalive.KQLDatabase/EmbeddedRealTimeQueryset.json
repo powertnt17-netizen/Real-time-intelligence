@@ -51,6 +51,24 @@
         "content": "V2\n| where Comboio == \"10\"\n| where Tipo_de_Evento == \"Temperature\"\n| extend Valor_Humidade = todouble(Valor) // Converte para número para facilitar a leitura\n| project \n    Datahora_Evento = todatetime(Datahora_Evento), \n    Comboio, \n    Carruagem, \n    ID_Equipamento, \n    Valor_Humidade\n| order by Datahora_Evento desc\n| take 50 // Mostra as últimas 100 leituras",
         "title": "",
         "dataSourceId": "6fdbeaea-58e0-4c95-a06d-b688fee1f3ca"
+      },
+      {
+        "id": "83fea7be-6755-4eaa-8624-59b1f255d29e",
+        "content": "V2 \n| where Datahora_Evento > datetime(2026-09-02 17:35:00)\n| count",
+        "title": "",
+        "dataSourceId": "6fdbeaea-58e0-4c95-a06d-b688fee1f3ca"
+      },
+      {
+        "id": "6ffb71b6-3b21-4b03-a9ae-8b77f2451dee",
+        "content": "V2\n| where Datahora_Evento > datetime(2026-09-02 17:35:00)\n| extend Hora_Chegada = ingestion_time()\n| extend Latencia_Segundos = datetime_diff('second', Hora_Chegada, Datahora_Evento)\n| summarize Latencia_Media = avg(Latencia_Segundos), Latencia_Maxima = max(Latencia_Segundos), Latencia_Minima = min(Latencia_Segundos)",
+        "title": "",
+        "dataSourceId": "6fdbeaea-58e0-4c95-a06d-b688fee1f3ca"
+      },
+      {
+        "id": "50169b71-b944-48bb-8215-29323dcaa2c3",
+        "content": "V2\n| where Datahora_Evento > datetime(2026-09-02 17:25:00)\n| where (Tipo_de_Evento == \"Engine Temperature\" and Valor > 95) \n     or (Tipo_de_Evento == \"Smoke Detector\" and Valor == 1)\n| summarize Quantidade_Alertas_Disparados = count() by Tipo_de_Evento, Comboio, Carruagem",
+        "title": "",
+        "dataSourceId": "6fdbeaea-58e0-4c95-a06d-b688fee1f3ca"
       }
     ]
   }
